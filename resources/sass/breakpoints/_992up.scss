@@ -1,0 +1,20 @@
+/*
+** 992+ Stylesheet
+*****************
+** General
+*****************/
+
+/*****************
+** LOGIN PAGE
+*****************/
+
+.login-page, .register-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .login-form, .register-form {
+        flex: 1;
+        margin-bottom: 5rem;
+    }
+}

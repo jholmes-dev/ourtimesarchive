@@ -1,0 +1,53 @@
+/*
+** Base Stylesheet
+*****************
+** General
+*****************/
+
+iframe, img {
+    max-width: 100%;
+}
+
+.sm-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.btn-primary {
+    color: white;
+}
+
+/*****************
+** HEADER
+*****************/
+
+#header {
+
+    .navbar-brand {
+
+        img {
+            max-width: 60px;
+        }
+    }
+}
+
+/*****************
+** LOGIN/REGISTER PAGE
+*****************/
+
+.logo-section {
+    text-align: center;
+
+    img {
+        max-width: 150px;
+    }
+}
+
+.register-form {
+    .logo-section {
+
+        img {
+            max-width: 100px;
+        }
+    }
+}
