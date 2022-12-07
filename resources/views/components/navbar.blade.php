@@ -26,7 +26,7 @@
 
         </ul>
 
-        <div class="nav mt-auto">
+        <div id="accountDropdown" class="nav mt-auto">
 
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle ps-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

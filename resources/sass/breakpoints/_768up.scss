@@ -2,3 +2,71 @@
 *****************
 ** General
 *****************/
+
+/*****************
+** HEADER
+*****************/
+
+#header {
+    display: none;
+}
+
+#offcanvasNavbar {
+    visibility: visible;
+    transform: translateX(-160px);
+    text-align: right;
+
+    .btn-close {
+        display: none;
+    }
+    .offcanvas-logo {
+        margin-left: auto;
+        margin-right: 0;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        transition: all ease .4s;
+
+        img {
+            max-width: 25px;
+            transition: all ease .4s;
+        }
+    }
+    .offcanvas-header, .offcanvas-body {
+        padding: .75rem .5rem;
+    }
+    #navMain {
+
+        .nav-item {
+
+            .nav-link {
+                padding: .5rem 0;
+                
+                span {
+                    order: 1;
+                    margin-left: 0;
+                    margin-right: .75rem;
+                    text-align: left;
+                }
+                i {
+                    order: 2;
+                }
+            }
+        }
+    }
+    #accountDropdown {
+        padding-right: 32px;
+    }
+
+    &:hover {
+        transform: translateX(0px);
+
+        .offcanvas-logo {
+            margin-right: 54px;
+    
+            img {
+                max-width: 75px;
+            }
+        }
+    }
+}
