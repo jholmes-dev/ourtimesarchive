@@ -18,7 +18,7 @@
                 <a href="#" class="nav-link"><i class="bi bi-plus-square-fill"></i> <span>New Entry</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-safe-fill"></i> <span>My Vaults</span></a>
+                <a href="{{ route('vault.all') }}" class="nav-link"><i class="bi bi-safe-fill"></i> <span>My Vaults</span></a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link"></a>
