@@ -14,3 +14,11 @@ $headings-font-family: $jose;
 // Color variables
 $primary: #fa7766;
 $secondary: #fca379;
+
+$container-max-widths: (
+    sm: 540px,
+    md: 700px,
+    lg: 900px,
+    xl: 1100px,
+    xxl: 1200px
+);

@@ -46,5 +46,11 @@
         </main>
 
     </div>
+
+    <x-messages/>
+
+    @hasSection('js')
+        @yield('js')
+    @endif 
 </body>
 </html>
