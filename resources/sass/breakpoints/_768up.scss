@@ -25,22 +25,35 @@
         height: 75px;
         display: flex;
         align-items: center;
-        transition: all ease .4s;
+        transition: all ease .3s;
 
         img {
             max-width: 25px;
-            transition: all ease .4s;
+            transition: all ease .3s;
         }
     }
-    .offcanvas-header, .offcanvas-body {
+    .offcanvas-header {
         padding: .75rem .5rem;
+    }
+    .offcanvas-body {
+        padding: .75rem 0;
     }
     #navMain {
 
         .nav-item {
 
             .nav-link {
-                padding: .5rem 0;
+                padding: .5rem;
+                border-radius: 0;
+
+                &:hover {
+                    background: $blue-500;
+                    color: white;
+
+                    i {
+                        color: white;
+                    }
+                }
                 
                 span {
                     order: 1;
@@ -50,12 +63,14 @@
                 }
                 i {
                     order: 2;
+                    display: flex;
                 }
             }
         }
     }
     #accountDropdown {
         padding-right: 32px;
+        padding-left: .5rem;
     }
 
     &:hover {
