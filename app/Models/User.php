@@ -69,4 +69,13 @@ class User extends Authenticatable
         return $this->hasMany(Asset::class);
     }
 
+    /**
+     * Has many relationship : Invite
+     * 
+     */
+    public function invites()
+    {
+        return $this->hasMany(Invite::class);
+    }
+
 }

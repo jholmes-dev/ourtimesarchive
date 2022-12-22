@@ -34,4 +34,13 @@ class Vault extends Model
         return $this->hasMany(Entry::class);
     }
 
+    /**
+     * Has manty relationship : Invite
+     * 
+     */
+    public function invites()
+    {
+        return $this->hasMany(Invite::class);
+    }
+
 }
