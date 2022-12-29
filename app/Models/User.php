@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Invite;
 
 class User extends Authenticatable
 {
@@ -71,11 +72,23 @@ class User extends Authenticatable
 
     /**
      * Has many relationship : Invite
-     * 
+     * The invites the user has sent 
+     *
      */
     public function invites()
     {
-        return $this->hasMany(Invite::class);
+        return $this->hasMany(Invite::class, 'from_user_id');
+    }
+    
+    /**
+     * Returns invites that match the user's email address
+     * 
+     */
+    public function receivedInvites()
+    {
+        return Invite::where('to', $this->email)
+            ->orderBy('created_at')
+            ->get();
     }
 
 }

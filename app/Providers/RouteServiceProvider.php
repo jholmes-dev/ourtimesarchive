@@ -20,6 +20,15 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
 
     /**
+     * The path to the "invites" route for your application.
+     *
+     * Users will be sent here after registering if they viewed an invite first
+     *
+     * @var string
+     */
+    public const INVITES = '/invites';
+
+    /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
      * @return void

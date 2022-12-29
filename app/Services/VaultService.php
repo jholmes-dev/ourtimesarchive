@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Vault;
 use App\Models\Invite;
 use App\Http\Requests\Vault\NewVaultRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserInvite;
 
 class VaultService 
 {
@@ -35,21 +37,22 @@ class VaultService
         $request->user()->vaults()->attach($vault);
 
         // Create invitations and send them
-        for ($i = 0; $i < length($input['invites']); $i++)
+        for ($i = 0; $i < count($input['invites']); $i++)
         {
-            if ($input['invites'][i] == null) {
+            if ($input['invites'][$i] == null) {
                 continue;
             }
 
             $invite = Invite::create([
                 'expires' => date('Y-m-d h:i:s', strtotime('today + 1 week')),
-                'to' => $input['invites'][i]
+                'to' => $input['invites'][$i]
             ]);
-            $invite->user()->associate($request->user());
+            $invite->fromUser()->associate($request->user());
             $invite->vault()->associate($vault);
             $invite->save();
 
-            // TODO: Send invite
+            Mail::to($invite->to)
+                ->queue(new UserInvite($invite));
 
         }
     }
