@@ -51,9 +51,9 @@ class VaultController extends Controller
      */
     public function store(NewVaultRequest $request)
     {
-        $response = $vaultService->createVault($request);
+        $response = $this->vaultService->createVault($request);
         
-        return back()->with('status', $validated['vault_name']);
+        return back()->with('success', 'Vault created!');
     }
 
     /**

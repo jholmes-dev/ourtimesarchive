@@ -17,8 +17,8 @@ return new class extends Migration
             $table->ulid('id');
             $table->timestamps();
             $table->timestamp('expires');
-            $table->integer('vault_id');
-            $table->integer('user_id');
+            $table->integer('vault_id')->nullable();
+            $table->integer('from_user_id')->nullable();
             $table->string('to', 255);
         });
     }
