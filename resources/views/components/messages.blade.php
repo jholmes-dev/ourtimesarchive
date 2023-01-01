@@ -6,7 +6,7 @@
                 <div class="d-flex">
                     <div class="toast-body">
                         <i class="bi bi-exclamation-circle fs-4 me-1 lh-1"></i>
-                        <div>{{ $error }}</div>
+                        {{ $error }}
                     </div>
 
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -20,7 +20,7 @@
             <div class="d-flex">
                 <div class="toast-body">
                     <i class="bi bi-exclamation-circle fs-4 me-1 lh-1"></i>
-                    <div>{{ session('error') }}</div>
+                    {{ session('error') }}
                 </div>
 
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -46,7 +46,7 @@
             <div class="d-flex">
                 <div class="toast-body">
                     <i class="bi bi-check2-circle fs-4 me-1 lh-1"></i>
-                    <div>{{ session('success') }}</div>
+                    {{ session('success') }}
                 </div>
 
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>

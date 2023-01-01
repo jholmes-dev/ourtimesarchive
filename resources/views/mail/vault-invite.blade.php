@@ -16,7 +16,7 @@
         <p>Use the button below to join the vault and start building your memory archive together!</p>
 
         <p style="text-align:center;margin:32px 0 16px;">
-            <a href="" target="_blank" style="box-shadow:3px 3px 3px rgba(0, 0, 0, .3);border-right:4px solid #fa7766;border-bottom:4px solid #fa7766;background:#fa7766;border-radius:6px;color:white;font-size:20px;text-decoration:none;padding:8px 30px;display:inline-block;">Join Vault</a>
+            <a href="{{ route('invite.view.guest', $invite->id) }}" target="_blank" style="box-shadow:3px 3px 3px rgba(0, 0, 0, .3);border-right:4px solid #fa7766;border-bottom:4px solid #fa7766;background:#fa7766;border-radius:6px;color:white;font-size:20px;text-decoration:none;padding:8px 30px;display:inline-block;">Join Vault</a>
         </p>
 
     </div>

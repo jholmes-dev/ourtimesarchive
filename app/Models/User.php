@@ -88,7 +88,10 @@ class User extends Authenticatable
     {
         return Invite::where('to', $this->email)
             ->orderBy('created_at')
-            ->get();
+            ->get()
+            ->reject(function($invite) {
+                return $invite->isExpired();
+            });
     }
 
 }
