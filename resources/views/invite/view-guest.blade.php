@@ -7,6 +7,10 @@
 
     <hr/>
 
+    @if ($invite->isExpired())
+        <h2 class="my-5 fst-italic text-muted">This invite has expired</h2>
+    @else
+
     <h3>You've received a vault invite!</h3>
 
     <div class="vault-invite my-5">
@@ -17,20 +21,7 @@
                 <h4>{{ $invite->vault->name }}</h4>
                 <p class="vault-invite-byline">by {{ $invite->fromUser->name }}</p>
 
-                @php
-                /*
-                <div class="row justify-content-between">
-                    <div class="col-7 col-xl-8">
-                        <a href="" class="w-100 btn btn-primary">Accept</a>
-                    </div>
-                    <div class="col-5 col-xl-4">
-                        <a href="" class="w-100 btn btn-secondary">Reject</a>
-                    </div>
-                </div>
-                */
-                @endphp
-
-                <p class="vault-invite-expires text-muted text-center">Expires in {{ date_diff(new DateTime($invite->expires), new DateTime())->days }} day(s)</p>
+                <p class="vault-invite-expires text-muted text-center">Expires in {{ $invite->expiresIn() }}</p>
 
             </div>
 
@@ -38,6 +29,8 @@
     </div>
 
     <p>Login or register to accept your invitation</p>
+
+    @endif
 
     <div class="row login-register-wrapper">
         <div class="col-6">

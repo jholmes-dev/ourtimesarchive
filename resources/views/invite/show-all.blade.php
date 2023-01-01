@@ -26,14 +26,23 @@
 
                         <div class="row justify-content-between">
                             <div class="col-7 col-xl-8">
-                                <a href="" class="w-100 btn btn-primary">Accept</a>
+                                <a href="{{ route('invite.accept', $invite->id) }}" onclick="event.preventDefault();document.getElementById('acceptInvite{{ $loop->iteration }}').submit();" class="w-100 btn btn-primary">Accept</a>
+
+                                <form id="acceptInvite{{ $loop->iteration }}" action="{{ route('invite.accept', $invite->id) }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+
                             </div>
                             <div class="col-5 col-xl-4">
-                                <a href="" class="w-100 btn btn-secondary">Reject</a>
+                                <a href="{{ route('invite.reject', $invite->id) }}" onclick="event.preventDefault();document.getElementById('rejectInvite{{ $loop->iteration }}').submit();" class="w-100 btn btn-secondary">Reject</a>
+
+                                <form id="rejectInvite{{ $loop->iteration }}" action="{{ route('invite.reject', $invite->id) }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
 
-                        <p class="vault-invite-expires text-muted text-center">Expires in {{ date_diff(new DateTime($invite->expires), new DateTime())->days }} day(s)</p>
+                        <p class="vault-invite-expires text-muted text-center">Expires in {{ $invite->expiresIn() }}</p>
 
                     </div>
 

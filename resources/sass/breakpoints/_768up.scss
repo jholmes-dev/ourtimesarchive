@@ -47,7 +47,8 @@
                 border-radius: 0;
 
                 &:hover {
-                    background: $blue-500;
+                    //background: $blue-500;
+                    background: $primary;
                     color: white;
 
                     i {

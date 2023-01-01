@@ -33,7 +33,7 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
     Route::get('/vault/create', 'create')->name('create');
     Route::post('/vault/create', 'store')->name('store');
 
-
+    
     
 });
 
@@ -43,8 +43,12 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
  */
 Route::controller(InviteController::class)->name('invite.')->group(function() {
 
+    // All invites
     Route::get('invites', 'viewAll')->name('all');
-    Route::post('invite/{id}', 'respond')->name('respond');
+
+    // Invite responses
+    Route::post('invite/{id}/accept', 'accept')->name('accept');
+    Route::post('invite/{id}/reject', 'reject')->name('reject');
 
 });
 
