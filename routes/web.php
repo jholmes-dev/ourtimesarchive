@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VaultController;
 use App\Http\Controllers\InviteController;
+use App\Http\Controllers\EntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,11 +45,11 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
 Route::controller(InviteController::class)->name('invite.')->group(function() {
 
     // All invites
-    Route::get('invites', 'viewAll')->name('all');
+    Route::get('/invites', 'viewAll')->name('all');
 
     // Invite responses
-    Route::post('invite/{id}/accept', 'accept')->name('accept');
-    Route::post('invite/{id}/reject', 'reject')->name('reject');
+    Route::post('/invite/{id}/accept', 'accept')->name('accept');
+    Route::post('/invite/{id}/reject', 'reject')->name('reject');
 
 });
 
@@ -65,4 +66,15 @@ Route::get('invite/{id}', function($id) {
 Route::get('/emailtest', function() {
     $invite = App\Models\Invite::all();
     return new App\Mail\UserInvite($invite[0]);
+});
+
+/**
+ * Entry related routes
+ * 
+ */
+Route::controller(EntryController::class)->name('entry.')->group(function() {
+
+    // New entry route
+    Route::get('/entry/new', 'create')->name('create');
+
 });
