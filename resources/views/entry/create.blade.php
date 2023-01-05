@@ -1,60 +1,77 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="mb-5">
+        <h2>New Entry</h2>
+    </div>
+</div>
+
 <div class="container container-smwrap">
 
-    <h2>New Entry</h2>
+    <form method="POST" action="{{ route('entry.store') }}">
+        @csrf
+        <div class="row gy-3">
 
-    <div class="my-5 entry-card card">
-        <div class="card-body">
+            <div class="col-12 col-md-9">
+                <div class="entry-card card">
+                    <div class="card-body">
 
-            <form>
-                @csrf
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="entry_title" id="entryTitle" placeholder="Add a title (Optional)" />
+                                        <label for="entryTitle">Add a title</label>
+                                    </div>
+                                </div>
 
-                <div class="row g-3">
-                    <div class="col-12 col-md-6">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" name="entry_title" id="entryTitle" placeholder="Add a title (Optional)" />
-                            <label for="entryTitle">Add a title (Optional)</label>
-                        </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" name="entry_date" id="entryDate" placeholder="Add a date" value="{{ date('Y-m-d', strtotime('now')) }}" />
+                                        <label for="entryTitle">Entry Date</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="entry_address" id="entryAddress" placeholder="Add a location (Optional)" /> 
+                                        <label for="entryAddress">Add a location</label> 
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <div class="form-floating">
+                                        <textarea name="entry_content" id="entryContent" class="form-control" placeholder="Add your memory"></textarea>
+                                        <label for="entryContent">Add your memory</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 image-upload-wrapper">
+                                    <h5>Add your photos</h5>
+
+                                    <input type="file" data-max="6" name="image-upload" accept="image/*" id="imageUpload" multiple />
+                                    <label for="imageUpload" id="imageUploadButton" class="btn btn-primary">Upload Photos</label>
+
+                                    <div id="uploadPreviews" class="row mt-4"></div>
+                                </div>
+
+                            </div>
+                        
+
                     </div>
+                </div> 
+            </div>
 
-                    <div class="col-12 col-md-6">
-                        <div class="form-floating">
-                            <input type="date" class="form-control" name="entry_date" id="entryDate" placeholder="Add a date" value="{{ date('Y-m-d', strtotime('now')) }}" />
-                            <label for="entryTitle">Entry Date</label>
-                        </div>
+            <div class="col-12 col-md-3">
+                <div class="submit-card card">
+                    <div class="card-body">
+                        <input type="submit" value="Save to Archive" class="btn btn-secondary w-100" />
                     </div>
-
-                    <div class="col-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" name="entry_address" id="entryAddress" placeholder="Add a location (Optional)" /> 
-                            <label for="entryAddress">Add a location (Optional)</label> 
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-floating">
-                            <textarea name="entry_content" id="entryContent" class="form-control" placeholder="Add your memory"></textarea>
-                            <label for="entryContent">Add your memory</label>
-                        </div>
-                    </div>
-
-                    <div class="col-12 image-upload-wrapper">
-                        <h5>Add photos</h5>
-
-                        <input type="file" data-max="6" name="image-upload " id="imageUpload" multiple />
-                        <label for="imageUpload" id="imageUploadButton" class="btn btn-primary">Upload Images</label>
-
-                        <div id="uploadPreviews" class="row"></div>
-                    </div>
-
                 </div>
-            </form>
+            </div> 
 
         </div>
-    </div>  
-
+    </form>
 </div>
 @endsection
 
@@ -87,27 +104,18 @@
 
             let reader = new FileReader();
             reader.onload = function (e) {
-                //let html = '<div class="uploaded-image"><div style="background-image: url(' + e.target.result + ')" data-number="' + $(".uploaded-image-remove").length + '" data-file="' + files[i].name + '" class="uploaded-image-background"><div class="uploaded-image-remove"></div></div></div>';
                 $('#uploadPreviews').append(generateImageElement(e.target.result));
             }
             reader.readAsDataURL(files[i]);
 
         }
 
+        $(this).val('');
+
     });
 
-    $('body').on('click', ".uploaded-image-remove", function(e) {
-        var file = $(this).parent().data("file");
-        
-        for (var i = 0; i < imgArray.length; i++) 
-        {
-            if (imgArray[i].name === file) {
-                imgArray.splice(i, 1);
-                break;
-            }
-        }
-
-        $(this).parent().parent().remove();
+    $('body').on('click', ".image-upload-delete", function(e) {
+        $(this).parent().remove();
     });
 
 
@@ -118,6 +126,7 @@
      * <div class="image-upload col-4">
      *     <div class="image-upload-preview"></div>
      *     <input type="hidden" value="" name="image[]" />
+     *     <div class="image-upload-delete"><i class="bi bi-x-circle-fill"></i></div>
      * </div>
      * 
      * @param
@@ -127,11 +136,25 @@
     {
         let containerElement = $('<div>').addClass('image-upload col-4');
         
+        // The image container
         $('<div>').attr({
             'class': 'image-upload-preview my-2'
         }).css({
             'background-image': 'url(' + imgData + ')'
         }).appendTo(containerElement);
+
+        // The hidden element containing the image data
+        $('<input>').addClass('image-upload-data').attr({
+            'type': 'hidden',
+            'name': 'image[]',
+            'value': imgData,
+        }).appendTo(containerElement);
+
+        // The `delete image` element
+        $('<div>')
+            .addClass('image-upload-delete')
+            .html('<i class="bi bi-x-circle-fill"></i>')
+            .appendTo(containerElement);
 
         return containerElement;
     }
