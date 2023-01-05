@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Entry\NewEntryRequest;
 
 class EntryController extends Controller
 {
@@ -21,18 +22,20 @@ class EntryController extends Controller
      * Show view for entry creation
      * 
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('entry.create');
+        $vaults = $request->user()->vaults;
+        return view('entry.create')->with([ 'vaults' => $vaults ]);
     }
 
     /**
      * View for storing an entry in the database
      * 
      */
-    public function store(Request $request)
+    public function store(NewEntryRequest $request)
     {
-        return back()->with([]);
+        $validated = $request->validated();
+        return back()->with(['input' => $validated]);
     }
 
 }

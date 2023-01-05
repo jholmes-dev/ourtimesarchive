@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Entry;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Vault;
 
 class NewEntryRequest extends FormRequest
 {
