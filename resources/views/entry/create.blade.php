@@ -14,6 +14,17 @@
         <div class="row gy-3">
 
             <div class="col-12 col-md-9">
+
+                <div class="mb-3">
+
+                    <select class="form-select" name="vault_id">
+                    @foreach ($vaults as $vault)
+                        <option value="{{ $vault->id }}">{{ $vault->name }}</option>
+                    @endforeach
+                    </select>
+
+                </div>
+
                 <div class="entry-card card">
                     <div class="card-body">
 
