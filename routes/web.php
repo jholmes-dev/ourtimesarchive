@@ -71,6 +71,7 @@ Route::controller(EntryController::class)->name('entry.')->group(function() {
 
     // New entry route
     Route::get('/entry/new', 'create')->name('create');
+    Route::post('entry/new', 'store')->name('store');
 
 });
 

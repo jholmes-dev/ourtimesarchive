@@ -26,4 +26,13 @@ class EntryController extends Controller
         return view('entry.create');
     }
 
+    /**
+     * View for storing an entry in the database
+     * 
+     */
+    public function store(Request $request)
+    {
+        return back()->with([]);
+    }
+
 }
