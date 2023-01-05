@@ -172,3 +172,43 @@ iframe, img {
         }
     }
 }
+
+/*****************
+** ENTRY STYLES
+*****************/
+
+.entry-card {
+    max-width: 600px;
+    margin: 0 auto;
+
+    #entryContent {
+        height: 140px;
+    }
+
+}
+
+.image-upload-wrapper {
+
+    #imageGallery {
+
+        .uploaded-image {
+            position: relative;
+
+            .uploaded-image-background {
+                background-size: cover;
+                background-repeat: none;
+                background-position: center;
+                height: 150px;
+            }
+            .uploaded-image-remove {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                background: red;
+                cursor: pointer;
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+}
