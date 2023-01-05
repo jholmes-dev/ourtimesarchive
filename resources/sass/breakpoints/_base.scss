@@ -189,16 +189,17 @@ iframe, img {
 
 .image-upload-wrapper {
 
-    #imageGallery {
+    #uploadPreviews {
 
-        .uploaded-image {
+        .image-upload {
             position: relative;
 
-            .uploaded-image-background {
+            .image-upload-preview {
                 background-size: cover;
-                background-repeat: none;
+                background-repeat: no-repeat;
                 background-position: center;
-                height: 150px;
+                height: 200px;
+                border: 1px solid $gray-300;
             }
             .uploaded-image-remove {
                 position: absolute;

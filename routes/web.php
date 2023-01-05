@@ -63,11 +63,6 @@ Route::get('invite/{id}', function($id) {
         ->cookie('fromInvite', $id, 600);
 })->name('invite.view.guest');
 
-Route::get('/emailtest', function() {
-    $invite = App\Models\Invite::all();
-    return new App\Mail\UserInvite($invite[0]);
-});
-
 /**
  * Entry related routes
  * 
@@ -77,4 +72,9 @@ Route::controller(EntryController::class)->name('entry.')->group(function() {
     // New entry route
     Route::get('/entry/new', 'create')->name('create');
 
+});
+
+Route::get('/emailtest', function() {
+    $invite = App\Models\Invite::all();
+    return new App\Mail\UserInvite($invite[0]);
 });

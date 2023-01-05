@@ -43,10 +43,10 @@
                     <div class="col-12 image-upload-wrapper">
                         <h5>Add photos</h5>
 
-                        <input type="file" data-max="10" name="image-upload " id="imageUpload" multiple />
+                        <input type="file" data-max="6" name="image-upload " id="imageUpload" multiple />
                         <label for="imageUpload" id="imageUploadButton" class="btn btn-primary">Upload Images</label>
 
-                        <div id="imageGallery"></div>
+                        <div id="uploadPreviews" class="row"></div>
                     </div>
 
                 </div>
@@ -74,8 +74,6 @@
         console.log(JSON.stringify(place));
     });
 
-    let imgArray;
-
     $('#imageUpload').on('change', function(e) {
 
         let files = e.target.files,
@@ -83,22 +81,18 @@
 
         for (let i = 0; i < files.length; i++) 
         {
-            if (!files[i].type.match('image.*') || imgArray.length > maxCount) {
+            if (!files[i].type.match('image.*')) {
                 return false;
             }
 
-            imgArray.push(files[i]);
-
             let reader = new FileReader();
             reader.onload = function (e) {
-                let html = '<div class="uploaded-image"><div style="background-image: url(' + e.target.result + ')" data-number="' + $(".uploaded-image-remove").length + '" data-file="' + files[i].name + '" class="uploaded-image-background"><div class="uploaded-image-remove"></div></div></div>';
-                $('#imageGallery').append(html);
+                //let html = '<div class="uploaded-image"><div style="background-image: url(' + e.target.result + ')" data-number="' + $(".uploaded-image-remove").length + '" data-file="' + files[i].name + '" class="uploaded-image-background"><div class="uploaded-image-remove"></div></div></div>';
+                $('#uploadPreviews').append(generateImageElement(e.target.result));
             }
             reader.readAsDataURL(files[i]);
 
         }
-
-        e.target.files = imgArray;
 
     });
 
@@ -115,6 +109,32 @@
 
         $(this).parent().parent().remove();
     });
+
+
+    /**
+     * Generates an HTML element to show the preview of uploaded images
+     * Returns the jQuery selector for direct insertion into the DOM
+     * 
+     * <div class="image-upload col-4">
+     *     <div class="image-upload-preview"></div>
+     *     <input type="hidden" value="" name="image[]" />
+     * </div>
+     * 
+     * @param
+     * @return jQuerySelector
+     */
+    function generateImageElement(imgData)
+    {
+        let containerElement = $('<div>').addClass('image-upload col-4');
+        
+        $('<div>').attr({
+            'class': 'image-upload-preview my-2'
+        }).css({
+            'background-image': 'url(' + imgData + ')'
+        }).appendTo(containerElement);
+
+        return containerElement;
+    }
 
 </script>
 @endsection
