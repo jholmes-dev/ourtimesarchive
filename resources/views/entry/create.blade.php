@@ -15,13 +15,17 @@
 
             <div class="col-12 col-md-9">
 
-                <div class="mb-3">
+                <div class="mb-3 row align-items-center" id="activeVaultWrapper">
 
-                    <select class="form-select" name="vault_id">
-                    @foreach ($vaults as $vault)
-                        <option value="{{ $vault->id }}">{{ $vault->name }}</option>
-                    @endforeach
-                    </select>
+                    <div class="col">
+                        <p class="m-0">Posting to</p>
+                        <h5 class="m-0 active-vault-name">{{ $vaults[0]->name }}</h5>
+                        <input id="activeVaultId" type="hidden" name="vault_id" value="{{ $vaults[0]->id }}" />
+                    </div>
+
+                    <div class="col-auto">
+                        <button class="btn btn-sm btn-dark">Change Vault</button>
+                    </div>
 
                 </div>
 
@@ -75,8 +79,9 @@
 
             <div class="col-12 col-md-3">
                 <div class="submit-card card">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <input type="submit" value="Save to Archive" class="btn btn-secondary w-100" />
+                        <span class="active-vault-name">{{ $vaults[0]->name }}</span>
                     </div>
                 </div>
             </div> 
