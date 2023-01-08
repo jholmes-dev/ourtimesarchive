@@ -15,6 +15,7 @@
     visibility: visible;
     transform: translateX(-160px);
     text-align: right;
+    z-index: 99;
 
     .btn-close {
         display: none;
