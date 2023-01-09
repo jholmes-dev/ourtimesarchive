@@ -30,6 +30,7 @@ class NewEntryRequest extends FormRequest
             'entry_date' => 'required|date',
             'entry_title' => 'nullable|string|max:256',
             'entry_address' => 'nullable|string|max:1024',
+            'entry_location_details' => 'nullable|json',
             'entry_content' => 'nullable|string|max:10240',
             'images' => 'nullable|array|max:6'
         ];

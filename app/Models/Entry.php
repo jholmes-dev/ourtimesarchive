@@ -22,7 +22,7 @@ class Entry extends Model
      * 
      * @var Array
      */
-    protected $casts [
+    protected $casts = [
         'date' => 'date'
     ];
 
