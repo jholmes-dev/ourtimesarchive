@@ -36,22 +36,23 @@
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="entry_title" id="entryTitle" placeholder="Add a title (Optional)" @if (old('entry_title'))value="{{ old('entry_title') }}@endif" />
+                                        <input type="text" class="form-control" name="entry_title" id="entryTitle" placeholder="Add a title (Optional)" @if (old('entry_title'))value="{{ old('entry_title') }}"@endif />
                                         <label for="entryTitle">Add a title</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating">
-                                        <input type="date" class="form-control" name="entry_date" id="entryDate" placeholder="Add a date" value="@if (old('entry_date')){{ old('entry_date') }}@else{{ date('Y-m-d', strtotime('now')) }}@endif" />
+                                        <input type="date" class="form-control" name="entry_date" id="entryDate" value="@if (old('entry_date')){{ old('entry_date') }}@else{{ date('Y-m-d', strtotime('now')) }}@endif" />
                                         <label for="entryTitle">Entry Date</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="entry_address" id="entryAddress" placeholder="Add a location (Optional)" @if (old('entry_address'))value="{{ old('entry_address') }}@endif" /> 
+                                        <input type="text" class="form-control" name="entry_address" id="entryAddress" placeholder="Add a location (Optional)" @if (old('entry_address'))value="{{ old('entry_address') }}"@endif /> 
                                         <label for="entryAddress">Add a location</label> 
+                                        <input type="hidden" id="entryLocationDetails" name="entry_location_details" @if (old('entry_address'))value="{{ old('entry_address') }}@endif />
                                     </div>
                                 </div>
 
@@ -134,9 +135,15 @@
 
         autocomplete.addListener('place_changed', function() {
             let place = autocomplete.getPlace();
-            console.log(JSON.stringify(place));
+            $('#entryLocationDetails').val(JSON.stringify(place));
         });
     } catch (e) {}    
+
+    $('#entryAddress').on('change', function() {
+        if ($(this).val() == '') {
+            $('#entryLocationDetails').val('');
+        }
+    });
 
     $('#imageUpload').on('change', function(e) {
 

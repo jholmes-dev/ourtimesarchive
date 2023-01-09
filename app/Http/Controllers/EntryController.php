@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Entry\NewEntryRequest;
+use App\Services\EntryService;
 
 class EntryController extends Controller
 {
     
     /**
+     * Entry service variable
+     * 
+     * @var App\Services\EntryService
+     */
+    public $entryService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(EntryService $entryService)
     {
         $this->middleware('auth');
+        $this->entryService = $entryService;
     }
 
     /**
@@ -34,7 +43,8 @@ class EntryController extends Controller
      */
     public function store(NewEntryRequest $request)
     {
-        $validated = $request->validated();
+        $result = $this->entryService->createEntry($request);
+
         return back()->with(['input' => $validated]);
     }
 
