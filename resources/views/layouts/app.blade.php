@@ -28,7 +28,7 @@
                         <img src="{{ Vite::asset('resources/images/logo-icon.png') }}" alt="{{ config('app.name', 'Laravel') }}" />
                     </a>
 
-                    <a href="#" class="navbar-add"><i class="bi bi-plus-square"></i></a>
+                    <a href="{{ route('entry.create') }}" class="navbar-add"><i class="bi bi-plus-square"></i></a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>

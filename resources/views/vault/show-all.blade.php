@@ -24,7 +24,7 @@
 
                     <div class="card-body text-center">
                         <h4>{{ $vault->name }}</h4>
-                        <a href="" class="btn btn-primary"><i class="bi bi-plus"></i> New Entry</a>
+                        <a href="{{ route('entry.create.for', $vault->id) }}" class="btn btn-primary"><i class="bi bi-plus"></i> New Entry</a>
 
                         <div class="vault-settings">
                             <a href="" class="text-muted"><i class="bi bi-gear-fill"></i></a>

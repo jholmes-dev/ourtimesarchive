@@ -34,8 +34,6 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
     Route::get('/vault/create', 'create')->name('create');
     Route::post('/vault/create', 'store')->name('store');
 
-    
-    
 });
 
 /**
@@ -69,8 +67,9 @@ Route::get('invite/{id}', function($id) {
  */
 Route::controller(EntryController::class)->name('entry.')->group(function() {
 
-    // New entry route
+    // New entry routes
     Route::get('/entry/new', 'create')->name('create');
+    Route::get('/vault/{id}/entry/new', 'create')->name('create.for');
     Route::post('entry/new', 'store')->name('store');
 
 });

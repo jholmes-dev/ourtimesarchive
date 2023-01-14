@@ -23,6 +23,7 @@ class AssetService
      * @param String $data : Base64 encoded image string
      * @param Integer $user_id : User ID
      * @param String $entry_id : Entry UUID
+     * @return App\Models\Asset
      */
     public function createFromBase64($data, $user_id, $entry_id) 
     {
