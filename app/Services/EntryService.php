@@ -58,7 +58,6 @@ class EntryService
         ];
 
         // Loop through images and pass them off to the AssetService for saving
-        // Attach them to the entry when we get them back
         foreach ($validated['images'] as $image) 
         {
             $data = substr($image, strpos($image, ',') + 1);

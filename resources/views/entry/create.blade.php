@@ -19,9 +19,9 @@
 
                     <div class="col">
                         <p class="m-0">Posting to</p>
-                        <h5 class="m-0 active-vault-name">@if (old('vault_name')){{ old('vault_name') }}@else{{ $vaults[0]->name }}@endif</h5>
-                        <input class="active-vault-name-val" type="hidden" name="vault_name" value="@if (old('vault_name')){{ old('vault_name') }}@else{{ $vaults[0]->name }}@endif" />
-                        <input class="active-vault-id-val" type="hidden" name="vault_id" value="@if (old('vault_id')){{ old('vault_id') }}@else{{ $vaults[0]->id }}@endif" />
+                        <h5 class="m-0 active-vault-name">@if (old('vault_name')){{ old('vault_name') }}@else{{ $selectedVault->name }}@endif</h5>
+                        <input class="active-vault-name-val" type="hidden" name="vault_name" value="@if (old('vault_name')){{ old('vault_name') }}@else{{ $selectedVault->name }}@endif" />
+                        <input class="active-vault-id-val" type="hidden" name="vault_id" value="@if (old('vault_id')){{ old('vault_id') }}@else{{ $selectedVault->id }}@endif" />
                     </div>
 
                     <div class="col-auto">
@@ -121,23 +121,22 @@
 @endsection
 
 @section('js')
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiOjAGV6rEayPD81Ojv2-vFt8veYsHRWA&libraries=places&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiOjAGV6rEayPD81Ojv2-vFt8veYsHRWA&libraries=places&callback=initMap"></script>
 <script type="module">
 
+    // Initialize vault change offcanvas
     var vaultChangeOffcanvas = new bootstrap.Offcanvas(document.getElementById('vaultSelect'));
+
+    // Set up Google Autocomplete widget
     const input = document.getElementById("entryAddress");
     const options = {
         fields: ["address_components", "geometry", "name"],
     };
-
-    try {
-        const autocomplete = new google.maps.places.Autocomplete(input, options);
-
-        autocomplete.addListener('place_changed', function() {
-            let place = autocomplete.getPlace();
-            $('#entryLocationDetails').val(JSON.stringify(place));
-        });
-    } catch (e) {}    
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
+    autocomplete.addListener('place_changed', function() {
+        let place = autocomplete.getPlace();
+        $('#entryLocationDetails').val(JSON.stringify(place));
+    });
 
     $('#entryAddress').on('change', function() {
         if ($(this).val() == '') {
@@ -145,6 +144,7 @@
         }
     });
 
+    // Image upload handling
     $('#imageUpload').on('change', function(e) {
 
         let files = e.target.files,
