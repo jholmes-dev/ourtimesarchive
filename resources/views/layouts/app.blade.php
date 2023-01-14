@@ -19,6 +19,8 @@
 </head>
 <body>
     <div id="app">
+        <div class="vault-splash"></div>
+
         @auth
         <div id="header">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">

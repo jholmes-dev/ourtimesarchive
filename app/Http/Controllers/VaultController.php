@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\VaultService;
 use App\Http\Requests\Vault\NewVaultRequest;
+use App\Models\Vault;
 
 class VaultController extends Controller
 {
@@ -53,7 +54,7 @@ class VaultController extends Controller
     {
         $response = $this->vaultService->createVault($request);
         
-        return back()->with('success', 'Vault created!');
+        return redirect()->route('vault.all')->with('success', 'Vault created!');
     }
 
     /**
@@ -62,5 +63,23 @@ class VaultController extends Controller
      */
     public function delete()
     {}
+
+    /**
+     * View for single vault
+     * 
+     * @param Integer $id : The vault ID we're accessing
+     */
+    public function view(Request $request, $id)
+    {
+        $vault = Vault::findOrFail($id);
+
+        if ($request->user()->cannot('access', $vault)) {
+            abort(403);
+        }
+
+        return view('vault.view', [ 
+            'vault' => $vault
+        ]);
+    }
 
 }

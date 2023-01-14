@@ -54,7 +54,7 @@ class InviteController extends Controller
         if ($res['status'] !== 200) {
             return back()->with('error', $res['message']);
         }
-        return back()->with('success', $res['message']);
+        return redirect()->route('vault.all')->with('success', $res['message']);
     }
 
     /**

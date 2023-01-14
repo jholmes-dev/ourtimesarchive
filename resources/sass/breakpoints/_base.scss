@@ -4,6 +4,23 @@
 ** General
 *****************/
 
+#app {
+    min-height: 100vh;
+    position: relative;
+
+    .vault-splash {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        bottom: 0;
+        right: 0;
+        background: url('../images/logo-icon.svg') 100px 100px no-repeat;
+        opacity: .2;
+        background-size: contain; 
+        z-index: -1;
+    }
+}
+
 .bi {
     vertical-align: middle;
 }

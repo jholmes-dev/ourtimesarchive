@@ -12,6 +12,12 @@ for (let i = 0; i < toastList.length; i++) {
     toastList[i].show();
 }
 
+// Initialize tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+	return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
 /** 
  * Creates and displays toast messages from input variables
  *

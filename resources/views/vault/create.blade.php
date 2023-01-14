@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container container-smwrap">
-
+<div class="container mb-5">
     <h2>New Vault</h2>
+</div>
+
+<div class="container container-smwrap">
 
     <form id="createVaultForm" name="createVaultForm" method="POST" action="{{ route('vault.store') }}">
         @csrf
@@ -29,10 +31,12 @@
             </div>
 
             <div class="text-end">
-                <button id="addInvite" class="btn btn-primary btn-sm">Add a field <i class="bi bi-person-plus"></i></button>
+                <button id="addInvite" class="btn btn-outline-primary btn-sm">Add a field <i class="bi bi-person-plus"></i></button>
             </div>
             
-            <input type="submit" class="btn btn-primary" value="Send" />
+            <div class="text-center mt-5">
+                <input type="submit" class="btn btn-lg btn-primary" value="Create" />
+            </div>
 
         </div>
 
