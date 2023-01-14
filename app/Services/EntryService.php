@@ -61,7 +61,7 @@ class EntryService
         foreach ($validated['images'] as $image) 
         {
             $data = substr($image, strpos($image, ',') + 1);
-            $asset = $this->assetService->createFromBase64($data, $request->user()->id, $entry->id);
+            $asset = $this->assetService->createFromBase64($data, $request->user()->id, $entry->id, $vault->id);
 
             if ($asset === false) {
                 $returnData['message'] = 'Your entry was created successfully, but some images failed to upload.';

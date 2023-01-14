@@ -20,14 +20,22 @@
             <div class="vault col-12 col-md-6 col-lg-4">
                 <div class="vault-inner card">
 
-
-
-                    <div class="card-body text-center">
-                        <h4>{{ $vault->name }}</h4>
-                        <a href="{{ route('entry.create.for', $vault->id) }}" class="btn btn-primary"><i class="bi bi-plus"></i> New Entry</a>
+                    <div class="card-body pt-4 text-center">
+                        
+                        <div class="vault-title mb-4">
+                            <h4>{{ $vault->name }}</h4>
+                        </div>
+                        <div class="vault-controls row justify-content-center">
+                            <div class="col-auto">
+                                <a href="{{ route('entry.create.for', $vault->id) }}" class="btn btn-primary"><i class="bi bi-plus"></i> New Entry</a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="{{ route('vault.view', $vault->id) }}" class="btn btn-outline-primary"><i class="bi bi-safe-fill"></i> View Vault</a>
+                            </div>
+                        </div>
 
                         <div class="vault-settings">
-                            <a href="" class="text-muted"><i class="bi bi-gear-fill"></i></a>
+                            <a href=""><i class="bi bi-heart"></i></a>
                         </div>
 
                     </div>

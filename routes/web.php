@@ -34,6 +34,9 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
     Route::get('/vault/create', 'create')->name('create');
     Route::post('/vault/create', 'store')->name('store');
 
+    // View a single vault
+    Route::get('/vault/{id}/view', 'view')->name('view');
+
 });
 
 /**

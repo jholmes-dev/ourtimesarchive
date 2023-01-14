@@ -1,0 +1,20 @@
+User
+    User Settings Page
+    Password Reset Page
+    Password change
+
+Encryption
+    Encryption flag
+    Encryption types
+        1: None
+        2: Flexible, uses master key asymmetrically
+        3: Full, no master key, no recovery
+
+Vault
+    - Vault profile image
+    - User management
+    - Unlock entries
+    - Settings/view page?
+    - Maybe set privileges type:
+        1: Everyone is an admin, can invite users, change photos, etc.
+        2: Specific people are admins
