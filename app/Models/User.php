@@ -84,9 +84,10 @@ class User extends Authenticatable
      * Returns invites that match the user's email address
      * 
      */
-    public function receivedInvites()
+    public function pendingInvites()
     {
         return Invite::where('to', $this->email)
+            ->where('rejected', false)
             ->orderBy('created_at')
             ->get()
             ->reject(function($invite) {

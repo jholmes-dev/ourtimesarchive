@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a href="{{ route('vault.all') }}" class="nav-link"><i class="bi bi-safe-fill"></i> <span>My Vaults</span></a>
             </li>
-            @if (Auth::user()->receivedInvites()->isNotEmpty())
+            @if (Auth::user()->pendingInvites()->isNotEmpty())
             <li class="nav-item">
                 <a href="{{ route('invite.all') }}" class="nav-link"><i class="bi bi-envelope-paper-heart-fill"></i> <span>Invites</span></a>
             </li>

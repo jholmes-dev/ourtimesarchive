@@ -20,6 +20,13 @@
             <div class="vault col-12 col-md-6 col-lg-4">
                 <div class="vault-inner card">
 
+                    
+                    @if ($vault->vault_photo == NULL)
+                    <div class="card-image-top" style="background-url();"></div>
+                    @else
+                    <div class="card-image-top card-image-top-custom" style="background-image:url('{{ route('vault.photo.get', $vault->id) }}');"></div>
+                    @endif
+
                     <div class="card-body pt-4 text-center">
                         
                         <div class="vault-title mb-4">

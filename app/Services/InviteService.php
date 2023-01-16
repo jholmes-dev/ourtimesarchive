@@ -67,8 +67,9 @@ class InviteService
             );
         }
 
-        // Delete the invite
-        $invite->delete();
+        // Mark the invite as rejected
+        $invite->rejected = true;
+        $invite->save();
 
         // Return success
         return Array(

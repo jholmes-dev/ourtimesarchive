@@ -18,3 +18,7 @@ Vault
     - Maybe set privileges type:
         1: Everyone is an admin, can invite users, change photos, etc.
         2: Specific people are admins
+
+Entry creation - Verify max size and max uploads number is enforced server-side
+
+Vault profile image - Make image resizing and storage into a queueable task

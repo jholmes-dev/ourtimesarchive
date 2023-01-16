@@ -33,7 +33,7 @@ class InviteController extends Controller
      */
     public function viewAll(Request $request)
     {
-        return view('invite.show-all', [ 'invites' => $request->user()->receivedInvites() ]);
+        return view('invite.show-all', [ 'invites' => $request->user()->pendingInvites() ]);
     }
 
     /**

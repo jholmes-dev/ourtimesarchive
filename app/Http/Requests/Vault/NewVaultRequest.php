@@ -24,7 +24,8 @@ class NewVaultRequest extends FormRequest
     public function rules()
     {
         return [
-            'vault_name' => 'required|max:255|String',
+            'vault_name' => 'required|max:255|string',
+            'vault_photo' => 'nullable|image|max:20971',
             'invites' => 'array|max:9',
             'invites.*' => 'email|max:255|nullable'
         ];
@@ -39,7 +40,7 @@ class NewVaultRequest extends FormRequest
     {
         return [
             'invites.*.email' => 'Invitations must be valid email addresses',
-            'invites.*.max' => 'Invitation email addresses cannot exceed 255 characters'
+            'invites.*.max' => 'Invitation email addresses cannot exceed 255 characters',
         ];
     }
 }
