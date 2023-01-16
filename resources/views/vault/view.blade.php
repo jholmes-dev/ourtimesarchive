@@ -14,13 +14,13 @@
                     <button class="nav-link active" id="vaultInfoTab" data-bs-toggle="tab" data-bs-target="#vaultInfo" type="button" role="tab" aria-controls="vaultInfo" aria-selected="true">Overview</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Unlocked Entries</button>
+                    <button class="nav-link" id="entriesTab" data-bs-toggle="tab" data-bs-target="#entries" type="button" role="tab" aria-controls="entries" aria-selected="false">Unlocked Entries</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Initiate Unlock</button>
+                    <button class="nav-link" id="unlockTab" data-bs-toggle="tab" data-bs-target="#unlock" type="button" role="tab" aria-controls="unlock" aria-selected="false">Initiate Unlock</button>
                 </li>
                 <li class="nav-item ms-auto" role="presentation">
-                    <button class="nav-link text-danger" id="leave-tab" data-bs-toggle="tab" data-bs-target="#leave" type="button" role="tab" aria-controls="leave" aria-selected="false">Leave Vault</button>
+                    <button class="nav-link text-danger" id="leaveTab" data-bs-toggle="tab" data-bs-target="#leave" type="button" role="tab" aria-controls="leave" aria-selected="false">Leave Vault</button>
                 </li>
             </ul>
 
@@ -99,9 +99,54 @@
                     </div>
                 </div>
                 
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <div class="tab-pane fade" id="entries" role="tabpanel" aria-labelledby="entriesTab">
+                    Feature in progress
+
+                    @foreach ($vault->entries as $entry)
+                        <p>
+                            {{ $entry->id }} <span class="float-end">{{ $entry->user->name }}</span>
+                            @foreach ($entry->assets as $asset) 
+                            <p class="m-0">{{ $asset->id }}</p>
+                            @endforeach
+                        </p>
+                    @endforeach
+                </div>
+                <div class="tab-pane fade" id="unlock" role="tabpanel" aria-labelledby="unlockTab">
+                    Feature in progress
+                </div>
+                <div class="tab-pane fade" id="leave" role="tabpanel" aria-labelledby="leaveTab">
+                    
+                    <p>Once you leave a vault <strong>you cannot return</strong>. All of your entries (both locked and unlocked), images, and any other data associated with the vault will be <strong>permanently deleted</strong>. If you are the last vault member, the vault will also be permanently deleted.</p>
+                    <p>Please consider carefully before continuing, as <strong>this action cannot be undone</strong>.</p>
+
+                    <div class="my-5 text-center">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#leaveModal">Leave Vault</button>
+                    </div>
+
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="leaveModal" tabindex="-1" aria-labelledby="leaveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="{{ route('vault.leave', $vault->id) }}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="leaveModalLabel">Leave Vault Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you'd like to leave <strong>{{ $vault->name }}</strong>?</p>
+                    <p>This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Nevermind</button>
+                    <input type="submit" class="btn btn-danger" value="Yes, Leave Vault">
+                </div>
+            </form>
         </div>
     </div>
 </div>

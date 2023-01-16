@@ -70,5 +70,21 @@ class EntryService
 
         return $returnData;
     }
+
+    /**
+     * Deletes and entry and its related assets
+     * 
+     * @param App\Models\Entry
+     */
+    public function delete(Entry $entry)
+    {
+        // Loop through related assets
+        $entry->assets->each(function($asset, $key) {
+            $this->assetService->delete($asset);
+        });
+
+        // Delete entry
+        $entry->delete();
+    }
     
 }
