@@ -51,5 +51,16 @@ class AssetService
         return $asset;
 
     }
+
+    /**
+     * Deletes a given asset
+     * 
+     * @param App\Models\Asset
+     */
+    public function delete(Asset $asset)
+    {
+        Storage::delete($asset->path);
+        $asset->delete();
+    }
     
 }

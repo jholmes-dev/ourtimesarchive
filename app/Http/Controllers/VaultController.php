@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\VaultService;
 use App\Http\Requests\Vault\NewVaultRequest;
 use App\Http\Requests\Vault\UpdatePhotoRequest;
+use App\Http\Requests\Vault\LeaveVaultRequest;
 use App\Models\Vault;
 use Illuminate\Support\Facades\Storage;
 
@@ -59,13 +60,18 @@ class VaultController extends Controller
     }
 
     /**
-     * Delete a vault
-     * Will be called after final member leaves.
-     * Delete: Vault Photo, Invites, Vault
-     * Entries will be deleted when individual members leave
+     * Remove a user from a vault
+     * Removes user, and all associated entries & assets
+     * 
+     * @param App\Http\Requests\Vault\LeaveVaultRequest $request : The authorized and validated request
+     * @param Integer $id : The vault id we're modifying
      */
-    public function delete()
-    {}
+    public function leave(LeaveVaultRequest $request, $id)
+    {
+        $vault = Vault::findOrFail($id);
+        $this->vaultService->removeUser($request->user(), $vault);
+        return redirect()->route('vault.all')->with([ 'success' => 'You have left the vault' ]);
+    }
 
     /**
      * View for single vault

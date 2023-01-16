@@ -77,5 +77,16 @@ class InviteService
             'message' => 'The invitation has been rejected'
         );
     }
+
+    /**
+     * Deletes an invite
+     * 
+     * @param App\Models\Invite
+     */
+    public function delete(Invite $invite)
+    {
+        $invite->delete();
+    }
+
     
 }

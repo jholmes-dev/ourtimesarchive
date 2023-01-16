@@ -38,8 +38,11 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
     Route::get('/vault/{id}/view', 'view')->name('view');
 
     // Vault photo actions
-    Route::get('vault/{id}/photo', 'getPhoto')->name('photo.get');
-    Route::post('vault/{id}/photo', 'updatePhoto')->name('photo.update');
+    Route::get('/vault/{id}/photo', 'getPhoto')->name('photo.get');
+    Route::post('/vault/{id}/photo', 'updatePhoto')->name('photo.update');
+
+    // Leave a vault
+    Route::post('/vault/{id}/leave', 'leave')->name('leave');
 
 });
 
@@ -77,7 +80,7 @@ Route::controller(EntryController::class)->name('entry.')->group(function() {
     // New entry routes
     Route::get('/entry/new', 'create')->name('create');
     Route::get('/vault/{id}/entry/new', 'create')->name('create.for');
-    Route::post('entry/new', 'store')->name('store');
+    Route::post('/entry/new', 'store')->name('store');
 
 });
 
