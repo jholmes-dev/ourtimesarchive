@@ -37,6 +37,10 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
     // View a single vault
     Route::get('/vault/{id}/view', 'view')->name('view');
 
+    // Vault photo actions
+    Route::get('vault/{id}/photo', 'getPhoto')->name('photo.get');
+    Route::post('vault/{id}/photo', 'updatePhoto')->name('photo.update');
+
 });
 
 /**

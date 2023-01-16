@@ -19,6 +19,15 @@ class Invite extends Model
     protected $guarded = [];
 
     /**
+     * Default attributes
+     * 
+     * @var Array
+     */
+    protected $attributes = [
+        'rejected' => false
+    ];
+
+    /**
      * Belongs to relationship for : Vault
      * 
      */

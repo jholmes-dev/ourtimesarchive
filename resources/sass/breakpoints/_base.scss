@@ -127,6 +127,19 @@ iframe, img {
 
     .vault-inner {
 
+        .card-image-top {
+            background-size: auto 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #f8fafc;
+            background-image: url('../images/logo-icon.png');
+            opacity: .5;
+            height: 250px;
+        }
+        .card-image-top-custom {
+            background-size: cover;
+            opacity: 1;
+        }
         .card-body {
             position: relative;
 
@@ -138,6 +151,41 @@ iframe, img {
                 line-height: 1;
             }
         }
+    }
+}
+
+.vault-photo-upload {
+
+    #imageUploadLabel {
+        border: 1px solid #ced4da;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: .375rem;
+        color: $primary;
+        background: #f8fafc;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+
+        .upload-icon {
+            font-size: 3rem;
+        }
+    }
+    .iul-holdheight {
+        min-height: 300px;
+    }
+    #imageUpload {
+        display: none;
+    }
+
+}
+
+.vault-info-group {
+    margin-bottom: 2.5rem;
+
+    h4, p {
+        margin: 0;
     }
 }
 
