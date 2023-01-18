@@ -35,20 +35,20 @@
                     <div class="tab-content-inner row justify-content-center">
                         
                         <div class="col-12 col-md-6">
-                            <div class="vault-info-group">
+                            <div class="info-group">
                                 <h4>Vault Created</h4>
                                 <p>{{ date('F j, Y', strtotime($vault->created_at)) }}</p>
                             </div>
-                            <div class="vault-info-group">
+                            <div class="info-group">
                                 <h4>Last Unlock</h4>
                                 <p>Not yet unlocked</p>
                             </div>
-                            <div class="vault-info-group">
+                            <div class="info-group">
                                 <h4>Entries</h4>
                                 <p>---</p>
                             </div>
 
-                            <div class="vault-info-group vault-member-list">
+                            <div class="info-group vault-member-list">
                                 <h4>Vault Members</h4>
 
                                 <table class="table">
@@ -88,8 +88,8 @@
                                     @csrf
                                     <input type="file" data-max-size="20971000" name="vault_photo" accept="image/*" id="imageUpload" />
 
-                                    <div class="text-center mt-4">
-                                        <input type="submit" class="btn btn-primary" value="Update Vault Photo">
+                                    <div class="text-end mt-4">
+                                        <input type="submit" class="btn btn-primary" value="Save Photo">
                                     </div>
                                 </form>
 

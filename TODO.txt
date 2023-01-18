@@ -22,3 +22,5 @@ Invite/Vault deleted before it could be accepted/rejected.
     -- Not found on vault invite guest view
 
 Sitewide - disable submit buttons and add loading icons to prevent multi-submit
+
+Have login page reidrect to nivites after logging in after viewing invite

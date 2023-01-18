@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VaultController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\EntryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,20 @@ use App\Http\Controllers\EntryController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * User management routes
+ * 
+ */
+Route::controller(UserController::class)->name('user.')->group(function() {
+
+    // My Account page
+    Route::get('/account', 'viewAccount')->name('account');
+
+    // Change password request
+    Route::post('/account/password/change', 'changePassword')->name('password.change');
+
+});
 
 /**
  * Vault related routes

@@ -34,6 +34,11 @@ iframe, img {
     margin: 0 auto;
 }
 
+.md-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .btn-primary {
     color: white;
 }
@@ -71,7 +76,7 @@ iframe, img {
             max-width: 60px;
         }
     }
-    #navMain {
+    #navMain, #navMainBottom {
 
         .nav-item {
 
@@ -146,8 +151,8 @@ iframe, img {
             .vault-settings {
                 position: absolute;
                 z-index: 5;
-                top: 6px;
-                right: 6px;
+                top: 10px;
+                right: 10px;
                 line-height: 1;
             }
         }
@@ -181,10 +186,10 @@ iframe, img {
 
 }
 
-.vault-info-group {
+.info-group {
     margin-bottom: 2.5rem;
 
-    h4, p {
+    h1, h2, h3, h4, h5, h6, p {
         margin: 0;
     }
 }
@@ -326,5 +331,15 @@ iframe, img {
                 line-height: 1;
             }
         }
+    }
+}
+
+/*****************
+** USER PAGE
+*****************/
+
+.basic-info {
+    .info-group {
+        margin: 0 0 2rem 0;
     }
 }
