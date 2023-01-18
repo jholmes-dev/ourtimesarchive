@@ -22,34 +22,29 @@
             </li>
             @if (Auth::user()->pendingInvites()->isNotEmpty())
             <li class="nav-item">
-                <a href="{{ route('invite.all') }}" class="nav-link"><i class="bi bi-envelope-paper-heart-fill"></i> <span>Invites</span></a>
+                <a href="{{ route('invite.all') }}" class="nav-link"><i class="bi bi-envelope-paper-heart"></i> <span>Invites</span></a>
             </li>
             @endif
 
         </ul>
 
-        <div id="accountDropdown" class="nav mt-auto">
+        <ul class="nav nav-pills flex-column mt-auto" id="navMainBottom">
 
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle ps-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                </a>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="bi bi-question-lg"></i> <span>Help</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('user.account') }}" class="nav-link"><i class="bi bi-person"></i> <span>Account</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="nav-link"><i class="bi bi-door-open"></i> <span>Logout</span></a>
 
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Account Settings</a>    
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </li>
 
-        </div>
+        </ul>
 
     </div>
 
