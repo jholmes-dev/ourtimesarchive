@@ -117,7 +117,7 @@
                 <div class="tab-pane fade" id="leave" role="tabpanel" aria-labelledby="leaveTab">
                     
                     <p>Once you leave a vault <strong>you cannot return</strong>. All of your entries (both locked and unlocked), images, and any other data associated with the vault will be <strong>permanently deleted</strong>. If you are the last vault member, the vault will also be permanently deleted.</p>
-                    <p>Please consider carefully before continuing, as <strong>this action cannot be undone</strong>.</p>
+                    <p>Please consider carefully before continuing, as <strong>this action cannot be undone, and you cannot rejoin a vault once you leave</strong>.</p>
 
                     <div class="my-5 text-center">
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#leaveModal">Leave Vault</button>

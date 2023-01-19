@@ -1,7 +1,5 @@
 User
-    User Settings Page
-    Password Reset Page
-    Password change
+    Change name
 
 Encryption
     Encryption flag
@@ -13,6 +11,15 @@ Encryption
 Vault
     - Initiate Vault Unlock
     - View unlocked entries
+    Favorite vault/vault sorting
+    ID -> ULID
+
+Password reset
+    - Reset page
+    reset email
+
+FAQ/Questions page
+    - Link Why text (vault creation screen)
 
 Entry creation - Verify max size and max uploads number is enforced server-side
 
