@@ -34,6 +34,9 @@ Route::controller(UserController::class)->name('user.')->group(function() {
     // Change password request
     Route::post('/account/password/change', 'changePassword')->name('password.change');
 
+    // Accont deletion
+    Route::post('/account/delete', 'deleteAccount')->name('delete');
+
 });
 
 /**

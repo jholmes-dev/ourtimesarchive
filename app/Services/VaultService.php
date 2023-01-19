@@ -79,7 +79,7 @@ class VaultService
         }
 
         // Upload and store vault photo if included
-        if ($input['vault_photo'] != NULL)
+        if (isset($input['vault_photo']) && $input['vault_photo'] != NULL)
         {
             $this->saveVaultPhoto($vault, $request->file('vault_photo'));
         }
