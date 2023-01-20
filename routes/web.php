@@ -37,6 +37,9 @@ Route::controller(UserController::class)->name('user.')->group(function() {
     // Accont deletion
     Route::post('/account/delete', 'deleteAccount')->name('delete');
 
+    // Name update
+    Route::post('/account/update/name', 'updateName')->name('update.name');
+
 });
 
 /**

@@ -1,6 +1,3 @@
-User
-    Change name
-
 Encryption
     Encryption flag
     Encryption types

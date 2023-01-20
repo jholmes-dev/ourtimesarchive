@@ -95,4 +95,15 @@ class User extends Authenticatable
             });
     }
 
+    /**
+     * Updates the user's name
+     * 
+     * @param String : The new name to set
+     */
+    public function updateName($name)
+    {
+        $this->name = $name;
+        $this->save();
+    }
+
 }

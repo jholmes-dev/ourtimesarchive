@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="info-group">
-                            <h6>Name <i class="bi bi-pencil-square"></i></h6>
+                            <h6>Name <i class="bi bi-pencil-square name-update-icon" data-bs-toggle="modal" data-bs-target="#changeNameModal"></i></h6>
                             <p>{{ $user->name }}</p>
                         </div>
                             
@@ -117,6 +117,29 @@
         </div>
     </div>
 
+</div>
+
+<div class="modal fade" id="changeNameModal" tabindex="-1" aria-labelledby="changeNameModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="{{ route('user.update.name') }}" method="POST">
+                @csrf
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changeNameModalLabel">Update Your Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This is how your name is displayed to other users within a vault.</p>
+                    <input type="text" name="updated_name" value="{{ $user->name }}" class="form-control">
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Nevermind</button>
+                    <input type="submit" value="Update" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountLabel" aria-hidden="true">
