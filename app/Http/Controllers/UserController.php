@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\User\UpdateNameRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Services\UserService;
@@ -55,6 +56,17 @@ class UserController extends Controller
         ])->save();
 
         return back()->with('success', 'Your password has been updated');
+    }
+
+    /**
+     * Change a user's display name
+     * 
+     */
+    public function updateName(UpdateNameRequest $request)
+    {
+        $input = $request->validated();
+        $request->user()->updateName($input['updated_name']);
+        return back()->with('success', 'Name updated');
     }
 
     /**

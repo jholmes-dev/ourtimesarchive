@@ -28,10 +28,10 @@ class NewEntryRequest extends FormRequest
         return [
             'vault_id' => 'required|integer',
             'entry_date' => 'required|date',
-            'entry_title' => 'nullable|string|max:256',
-            'entry_address' => 'nullable|string|max:1024',
+            'entry_title' => 'nullable|string|max:255',
+            'entry_address' => 'nullable|string|max:1020',
             'entry_location_details' => 'nullable|json',
-            'entry_content' => 'nullable|string|max:10240',
+            'entry_content' => 'nullable|string|max:10200',
             'images' => 'nullable|array|max:6'
         ];
     }
