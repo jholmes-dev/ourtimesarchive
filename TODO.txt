@@ -17,6 +17,7 @@ Password reset
 
 FAQ/Questions page
     - Link Why text (vault creation screen)
+    - Link initiate unlock explanation text
 
 Entry creation - Verify max size and max uploads number is enforced server-side
 
@@ -27,4 +28,4 @@ Invite/Vault deleted before it could be accepted/rejected.
 
 Sitewide - disable submit buttons and add loading icons to prevent multi-submit
 
-Have login page reidrect to nivites after logging in after viewing invite
+Have login page reidrect to invites after logging in after viewing invite
