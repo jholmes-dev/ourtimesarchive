@@ -128,6 +128,16 @@ iframe, img {
 ** VAULT PAGE
 *****************/
 
+.vaults-list {
+
+    h2 {
+
+        .btn {
+            font-family: $abel;
+        }
+    }
+}
+
 .vault {
 
     .vault-inner {
@@ -191,6 +201,128 @@ iframe, img {
 
     h1, h2, h3, h4, h5, h6, p {
         margin: 0;
+    }
+}
+
+.unlock-local, .unlock-remote {
+    text-align: center;
+    background: $primary;
+    display: inline-block;
+    border-radius: 6px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, .2);
+    position: relative;
+    transition: all ease .8s;
+    max-width: 210px;
+    width: 100%;
+    margin: 0 auto;
+
+    h5 {
+        margin: 0;
+        color: white;
+        background: $secondary;
+        padding: .75rem .5rem;
+        border-radius: 0 0 6px 6px;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        .unlock-icon {
+            animation-play-state: running;
+            .bi {
+                animation-play-state: running;
+            }
+        }
+    }
+    .unlock-icon {
+        position: relative;
+        background: white;
+        width: 108px;
+        height: 108px;
+        font-size: 1.5rem;
+        border: 4px solid $secondary;
+        border-radius: 54px;
+        color: $primary;
+        margin: 2.5rem auto;
+        animation: 60s infinite linear rotate-parent;
+        animation-play-state: paused;
+
+        .bi {
+            position: absolute;
+            line-height: 1;
+            animation: 60s infinite linear rotate-child;
+            animation-play-state: paused;
+        }
+        .ul1 {
+            right: 5px;
+            top: 38px;
+        }
+        .ul2 {
+            bottom: 5px;
+            left: 38px;
+        }
+        .ul3 {
+            left: 5px;
+            top: 38px;
+        }
+        .ul4 {
+            top: 5px;
+            left: 38px;
+        }
+        .ul5 {
+            left: 38px;
+            top: 38px;
+        }
+    }
+}
+
+.unlock-remote-wrapper {
+
+    h6 {
+        margin: 1rem 0 0;
+    }
+}
+.unlock-remote {
+    opacity: .5;
+
+    .unlock-icon {
+        
+        .ul1 {
+            right: 7px;
+            top: 38px;
+        }
+        .ul2 {
+            bottom: 7px;
+            left: 38px;
+        }
+        .ul3 {
+            left: 7px;
+            top: 38px;
+        }
+        .ul4 {
+            top: 7px;
+            left: 38px;
+        }
+        .ul5 {
+            left: 38px;
+            top: 38px;
+        }
+    }
+}
+
+@keyframes rotate-parent {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+@keyframes rotate-child {
+    from {
+        transform: rotateZ(360deg);
+    }
+    to {
+        transform: rotateZ(0deg);
     }
 }
 
