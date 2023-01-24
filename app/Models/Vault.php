@@ -43,4 +43,13 @@ class Vault extends Model
         return $this->hasMany(Invite::class);
     }
 
+    /**
+     * Has many relationship for : Unlock
+     * 
+     */
+    public function unlocks() 
+    {
+        return $this->hasMany(Unlock::class);
+    }
+
 }

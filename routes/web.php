@@ -6,6 +6,7 @@ use App\Http\Controllers\VaultController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UnlockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,20 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
 
     // Leave a vault
     Route::post('/vault/{id}/leave', 'leave')->name('leave');
+
+    // Generate a local vault unlock
+    Route::post('/vault/{id}/unlock/local', 'generateLocalUnlock')->name('unlock.local');
+
+});
+
+/**
+ * Unlock related routes
+ * 
+ */
+Route::controller(UnlockController::class)->name('unlock.')->group(function() {
+
+    // View a local unlock
+    Route::get('/vautlt/{vid}/unlock/{uid}', 'view')->name('view');
 
 });
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->ulid('entry_id');
             $table->integer('user_id');
-            $table->string('path', 1020);
+            $table->string('path', 1024);
             $table->integer('type');
         });
     }

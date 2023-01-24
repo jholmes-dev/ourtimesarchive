@@ -123,4 +123,13 @@ class VaultController extends Controller
         return back()->with([ 'success' => 'Vault image has been updated!']);
     }
 
+    /**
+     * Generates an unlock for the given vault
+     * 
+     */
+    public function generateLocalUnlock()
+    {
+        //
+    }
+
 }

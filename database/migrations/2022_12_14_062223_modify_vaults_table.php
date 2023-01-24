@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('vaults', function(Blueprint $table) {
-            $table->string('name', 255);
+            $table->string('name', 256);
         });
     }
 
