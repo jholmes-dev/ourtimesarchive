@@ -11,6 +11,10 @@ Vault
     Favorite vault/vault sorting
     ID -> ULID
 
+Entry
+    - Prevent page from submitting on enter
+    - Pop-up modal confirming if user wants to submit a blank entry
+
 Password reset
     - Reset page
     reset email

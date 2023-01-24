@@ -78,7 +78,7 @@ Route::controller(VaultController::class)->name('vault.')->group(function() {
 Route::controller(UnlockController::class)->name('unlock.')->group(function() {
 
     // View a local unlock
-    Route::get('/vautlt/{vid}/unlock/{uid}', 'view')->name('view');
+    Route::get('/vault/{vid}/unlock/{uid}', 'view')->name('view');
 
 });
 

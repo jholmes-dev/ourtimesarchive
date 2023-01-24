@@ -18,6 +18,15 @@ class Entry extends Model
     protected $guarded = [];
 
     /**
+     * The default values for attributes
+     * 
+     * @var Array
+     */
+    protected $attributes = [
+        'unlocked' => false
+    ];
+
+    /**
      * Attribute casts
      * 
      * @var Array

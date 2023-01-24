@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('unlocks', function (Blueprint $table) {
-            $table->ulid('id')->unique();
-            $table->timestamps();
-            $table->text('users');
-            $table->text('entry_ids');
-            $table->integer('current_entry');
-            $table->integer('user_id');
+        Schema::table('entries', function (Blueprint $table) {
+            $table->boolean('unlocked');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unlocks');
+        Schema::table('entries', function (Blueprint $table) {
+            $table->dropColumn('unlocked');
+        });
     }
 };

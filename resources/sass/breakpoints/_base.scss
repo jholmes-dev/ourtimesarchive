@@ -227,9 +227,9 @@ iframe, img {
     &:hover {
         transform: scale(1.05);
         .unlock-icon {
-            animation-play-state: running;
+            transform: rotateZ(180deg);
             .bi {
-                animation-play-state: running;
+                transform: rotateZ(-180deg);
             }
         }
     }
@@ -243,14 +243,14 @@ iframe, img {
         border-radius: 54px;
         color: $primary;
         margin: 2.5rem auto;
-        animation: 60s infinite linear rotate-parent;
-        animation-play-state: paused;
+        transition: all ease .8s;
+        transform: rotateZ(0deg);
 
         .bi {
             position: absolute;
             line-height: 1;
-            animation: 60s infinite linear rotate-child;
-            animation-play-state: paused;
+            transition: all ease .8s;
+            transform: rotateZ(0deg);
         }
         .ul1 {
             right: 5px;
@@ -309,22 +309,6 @@ iframe, img {
     }
 }
 
-@keyframes rotate-parent {
-    from {
-        transform: rotateZ(0deg);
-    }
-    to {
-        transform: rotateZ(360deg);
-    }
-}
-@keyframes rotate-child {
-    from {
-        transform: rotateZ(360deg);
-    }
-    to {
-        transform: rotateZ(0deg);
-    }
-}
 
 /*****************
 ** INVITE STYLES
