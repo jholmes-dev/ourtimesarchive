@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('vaults', function(Blueprint $table) {
-            $table->string('vault_photo', 256)->nullable();
+        Schema::create('unlocks', function (Blueprint $table) {
+            $table->ulid('id')->unique();
+            $table->timestamps();
+            $table->string('users', 65535);
+            $table->string('entry_ids', 65535);
+            $table->integer('current_entry');
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('vaults', function(Blueprint $table) {
-            $table->dropColumn('vault_photo');
-        });
+        Schema::dropIfExists('unlocks');
     }
 };

@@ -34,7 +34,8 @@
                     :vault="$vault" />
                 <x-vault-tabs.entries
                     :vault="$vault" />
-                <x-vault-tabs.unlock/>
+                <x-vault-tabs.unlock
+                    :vault="$vault" />
                 <x-vault-tabs.leave
                     :vault="$vault" />
             </div>

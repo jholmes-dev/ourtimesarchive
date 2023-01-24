@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('expires')->nullable();
             $table->integer('vault_id')->nullable();
             $table->integer('from_user_id')->nullable();
-            $table->string('to', 255);
+            $table->string('to', 256);
         });
     }
 

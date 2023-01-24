@@ -14,8 +14,12 @@
                     <i class="bi bi-laptop ul5"></i>
                 </div>
                 <h5>Local Unlock</h5>
-                <a href="#" class="stretched-link"></a>
+                <a href="#" class="stretched-link"  onclick="event.preventDefault();document.getElementById('local-unlock').submit();"></a>
             </div>
+
+            <form class="d-none" id="local-unlock" action="{{ route('vault.unlock.local', $vault->id) }}" method="POST">
+                @csrf
+            </form>
         </div>
         <div class="col-12 col-md-6 unlock-remote-wrapper text-center">
             <div class="unlock-remote">
