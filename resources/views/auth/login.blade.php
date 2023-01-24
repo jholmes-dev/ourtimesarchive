@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container login-page">
+<div class="container py-4 login-page">
 
     <div class="sm-wrapper login-form">
 

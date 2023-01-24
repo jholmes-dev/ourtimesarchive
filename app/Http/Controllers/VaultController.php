@@ -7,6 +7,7 @@ use App\Services\VaultService;
 use App\Http\Requests\Vault\NewVaultRequest;
 use App\Http\Requests\Vault\UpdatePhotoRequest;
 use App\Http\Requests\Vault\LeaveVaultRequest;
+use App\Http\Requests\Vault\GenerateUnlockRequest;
 use App\Models\Vault;
 use Illuminate\Support\Facades\Storage;
 
@@ -126,10 +127,19 @@ class VaultController extends Controller
     /**
      * Generates an unlock for the given vault
      * 
+     * @param App\Http\Requests\Vault\GenerateUnlockRequest
+     * @param Integer $id : The vault ID
      */
-    public function generateLocalUnlock()
+    public function generateLocalUnlock(GenerateUnlockRequest $request, $id)
     {
-        //
+        $vault = Vault::findOrFail($id);
+        $unlockRes = $vault->generateUnlock($request->user()->id);
+
+        if ($unlockRes['status'] != 200) return back()->with('error', $unlockRes['message']);
+        return redirect()->route('unlock.view', [
+            'vid' => $vault->id, 
+            'uid' => $unlockRes['data']->id
+        ]);
     }
 
 }
