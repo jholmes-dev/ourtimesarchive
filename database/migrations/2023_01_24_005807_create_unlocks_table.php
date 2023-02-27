@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('entry_ids');
             $table->integer('current_entry');
             $table->integer('user_id');
+            $table->integer('vault_id');
         });
     }
 
