@@ -89,7 +89,6 @@ class Vault extends Model
     public function generateUnlock($user_id)
     {  
         $entries = $this->lockedEntries();
-
         if ($entries->count() == 0) {
             return [
                 'status' => '404',
@@ -97,11 +96,22 @@ class Vault extends Model
             ];
         }
 
+        // Return any existing unlocks
+        $unlocks = $this->unlocks;
+        if ($unlocks->count() > 0) {
+            return [
+                'status' => '200',
+                'message' => 'There is already an active unlock for this vault',
+                'data' => $unlocks->first()
+            ];
+        }
+
         $unlock = Unlock::create([
             'users' => serialize($this->generateAuthArray()),
             'entry_ids' => serialize($entries->modelKeys()),
             'current_entry' => 0,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'vault_id' => $this->id
         ]);
 
         return [
