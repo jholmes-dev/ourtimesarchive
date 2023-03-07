@@ -37,13 +37,58 @@ class Unlock extends Model
     }
 
     /**
+     * Has many relationship for : UnlockAuthorization
+     * 
+     */
+    public function unlockAuthorizations()
+    {
+        return $this->hasMany(UnlockAuthorization::class);
+    }
+
+    /**
+     * Creates a user authorization for each user associated with the unlock's vault
+     * 
+     * @param ULID
+     */
+    public function generateUserAuths()
+    {
+        if ($this->haveAuthsBeenGenerated()) return;
+
+        $this->vault->users->each(function($user, $key) 
+        {
+            UnlockAuthorization::create([
+                'user_id' => $user->id,
+                'unlock_id' => $this->id
+            ]);
+        });
+    }
+
+    /**
+     * Checks user authorizations have been generated yet
+     * 
+     * @return Boolean
+     */
+    public function haveAuthsBeenGenerated()
+    {
+        return ($this->unlockAuthorizations->count() == 0) ? false : true;
+    } 
+
+    /**
      * Checks if all users have authorized the unlock
      * 
      * @return Boolean
      */
     public function isAuthorized()
     {
-        //
+        if (!$this->haveAuthsBeenGenerated()) return false;
+
+        $this->unlockAuthorizations->each(function($unlockAuth, $key) {
+            if ($unlockAuth->authorized_at == NULL) {
+                return false;
+            }
+        });
+
+        return true;
     }
 
     /**
@@ -63,16 +108,6 @@ class Unlock extends Model
      * @param App\Models\User
      */
     public function setAuthorization(User $user)
-    {
-        //
-    }
-
-    /**
-     * Accepts a collection of entries and stores them
-     * 
-     * @param Collection[App\Models\Entry]
-     */
-    public function setEntries($entries)
     {
         //
     }

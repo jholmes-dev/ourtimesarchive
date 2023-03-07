@@ -136,7 +136,8 @@ class VaultController extends Controller
         $unlockRes = $vault->generateUnlock($request->user()->id);
 
         if ($unlockRes['status'] != 200) return back()->with('error', $unlockRes['message']);
-        return redirect()->route('unlock.view', [
+
+        return redirect()->route('unlock.route', [
             'vid' => $vault->id, 
             'uid' => $unlockRes['data']->id
         ]);
