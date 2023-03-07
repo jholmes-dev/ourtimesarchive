@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('unlocks', function (Blueprint $table) {
-            $table->ulid('id')->unique();
+        Schema::create('unlock_authorizations', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-            $table->integer('current_entry');
+            $table->dateTime('authorized_at')->nullable();
             $table->integer('user_id');
-            $table->integer('vault_id');
+            $table->foreignUlid('unlock_id');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unlocks');
+        Schema::dropIfExists('unlock_authorizations');
     }
 };

@@ -14,6 +14,7 @@ Vault
 Entry
     - Prevent page from submitting on enter
     - Pop-up modal confirming if user wants to submit a blank entry
+    - Transparent images show loading spinner behind image after load
 
 Password reset
     - Reset page
@@ -33,3 +34,5 @@ Invite/Vault deleted before it could be accepted/rejected.
 Sitewide - disable submit buttons and add loading icons to prevent multi-submit
 
 Have login page reidrect to invites after logging in after viewing invite
+
+Make logo link expand to full width on hover

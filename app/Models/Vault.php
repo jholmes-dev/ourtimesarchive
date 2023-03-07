@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Vault;
 use App\Models\Unlock;
+use App\Models\UnlockAuthorization;
 
 class Vault extends Model
 {
@@ -65,54 +66,35 @@ class Vault extends Model
     }
 
     /**
-     * Initializes and returns an authorization array related to this vault for an Unlock
-     * 
-     * @return Array
-     */
-    public function generateAuthArray()
-    {
-        $authArray = [];
-
-        $this->users->each(function($user, $key) use (&$authArray) {
-            $authArray[$user->id] = false;
-        });
-
-        return $authArray;
-    }
-
-    /**
-     * Generates an unlock for the vault, and attaches the given user
+     * Generates a new unlock for the vault, or returns an existing unlock if it already exists
      * 
      * @param Integer $user_id : The requesting user's ID
      * @return Array : Array containing status, message, and data
      */
     public function generateUnlock($user_id)
     {  
-        $entries = $this->lockedEntries();
-        if ($entries->count() == 0) {
+
+        if ($this->lockedEntries()->count() == 0) {
             return [
                 'status' => '404',
                 'message' => 'There are no entries in this vault to unlock'
             ];
         }
 
-        // Return any existing unlocks
-        $unlocks = $this->unlocks;
-        if ($unlocks->count() > 0) {
-            return [
-                'status' => '200',
-                'message' => 'There is already an active unlock for this vault',
-                'data' => $unlocks->first()
-            ];
-        }
+        if ($this->unlocks->count() > 0) {
 
-        $unlock = Unlock::create([
-            'users' => serialize($this->generateAuthArray()),
-            'entry_ids' => serialize($entries->modelKeys()),
-            'current_entry' => 0,
-            'user_id' => $user_id,
-            'vault_id' => $this->id
-        ]);
+            $unlock = $this->unlocks->first();
+            
+        } else {
+
+            $unlock = Unlock::create([
+                'current_entry' => 0,
+                'user_id' => $user_id,
+                'vault_id' => $this->id
+            ]);
+            $unlock->generateUserAuths();
+
+        }
 
         return [
             'status' => '200',

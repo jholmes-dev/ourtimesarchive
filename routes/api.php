@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\UnlockAuthorizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+/**
+ * Unlock related routes
+ * 
+ */
+Route::middleware('auth:sanctum')->controller(UnlockAuthorizationController::class)->name('api.uauth.')->group(function() {
+
+    // Local unlock. Routes the request to the proper method
+    Route::post('/uauth/verify', 'verifyAuthorization')->name('verify');
+
 });
