@@ -82,11 +82,12 @@ class Unlock extends Model
     {
         if (!$this->haveAuthsBeenGenerated()) return false;
 
-        $this->unlockAuthorizations->each(function($unlockAuth, $key) {
-            if ($unlockAuth->authorized_at == NULL) {
+        for ($i = 0; $i < $this->unlockAuthorizations->count(); $i++)
+        {
+            if ($this->unlockAuthorizations[$i]->authorized_at == NULL) {
                 return false;
             }
-        });
+        }
 
         return true;
     }
@@ -98,16 +99,6 @@ class Unlock extends Model
      * @return Boolean
      */
     public function hasAuthorized(User $user)
-    {
-        //
-    }
-
-    /**
-     * Sets a user's unlock authorization
-     * 
-     * @param App\Models\User
-     */
-    public function setAuthorization(User $user)
     {
         //
     }
