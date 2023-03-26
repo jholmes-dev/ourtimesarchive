@@ -14,7 +14,7 @@ class UnlockAuthorizationVerificationRequest extends FormRequest
      */
     public function authorize()
     {
-        $uAuth = UnlockAuthorization::find($this->uaid);
+        $uAuth = UnlockAuthorization::findOrFail($this->uaid);
 
         // Make sure the requesting user is attached to the vault
         if ($this->user()->cannot('access', $uAuth->unlock->vault)) return false;

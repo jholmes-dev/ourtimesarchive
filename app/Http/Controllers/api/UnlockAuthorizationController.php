@@ -29,17 +29,12 @@ class UnlockAuthorizationController extends Controller
         $uAuth = UnlockAuthorization::findOrFail($request->input('uaid'));
         
         if ($uAuth->authorizeUnlock($request->input('password'))) {
-
             return response()->json([
                 'status' => true,
+                'message' => 'Authorization successful!'
             ]);
-
         } else {
-
-            return response()->json([
-                'status' => false,
-            ]);
-
+            abort(403, 'Authentication failed. Check your password.');
         }
 
     }

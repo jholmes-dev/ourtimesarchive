@@ -41,7 +41,7 @@ class UnlockController extends Controller
         if ($request->user()->cannot('access', $vault)) abort(403);
         $unlock = Unlock::findOrFail($uid);
 
-        if ($unlock->isAuthorized()) {
+        if (!$unlock->isAuthorized()) {
             return $this->authorizeUnlock($request, $vault, $unlock);
         } else {
             return $this->viewUnlock($request, $vault, $unlock);

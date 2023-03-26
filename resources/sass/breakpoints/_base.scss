@@ -463,3 +463,47 @@ iframe, img {
 .name-update-icon {
     cursor: pointer;
 }
+
+/*****************
+** LOCAL UNLOCK PAGE
+*****************/
+
+.unlock-auth {
+
+    .ua-inner {
+        position: relative;
+    }
+    
+    .unlock-success {
+        transition: all ease .8s;
+        visibility: hidden;
+        font-size: 3rem;
+        color: white;
+        background: $success;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+    }
+    .ua-user {
+        position: relative;
+        transition: margin ease .8s, color ease .8s;
+    }
+}
+
+.uauth-success {
+    
+    .unlock-success {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+    }
+    .ua-user {
+        color: white;
+        margin-bottom: -2rem;
+    }
+}
