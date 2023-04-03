@@ -62,7 +62,7 @@ class Vault extends Model
      */
     public function lockedEntries()
     {
-        return $this->entries()->where('unlocked', false)->get();
+        return $this->entries()->where('unlock_id', NULL)->get();
     }
 
     /**
@@ -74,17 +74,20 @@ class Vault extends Model
     public function generateUnlock($user_id)
     {  
 
-        if ($this->lockedEntries()->count() == 0) {
-            return [
-                'status' => '404',
-                'message' => 'There are no entries in this vault to unlock'
-            ];
-        }
-
+        // Return existing unlock
         if ($this->unlocks->count() > 0) {
 
             $unlock = $this->unlocks->first();
             
+        // Return error if no entries available to unlock
+        } else if ($this->lockedEntries()->count() == 0) {
+
+            return [
+                'status' => '404',
+                'message' => 'There are no entries in this vault to unlock'
+            ];
+
+        // Create a new unlock if not caught by above statements
         } else {
 
             $unlock = Unlock::create([
@@ -95,7 +98,7 @@ class Vault extends Model
             $unlock->generateUserAuths();
 
         }
-
+        
         return [
             'status' => '200',
             'message' => 'Success',

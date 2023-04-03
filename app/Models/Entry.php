@@ -54,6 +54,15 @@ class Entry extends Model
     }
 
     /**
+     * Belongs to relationship : Unlock
+     * 
+     */
+    public function unlock()
+    {
+        return $this->belongsTo(Unlock::class);
+    }
+
+    /**
      * Has many relationship : Asset
      * 
      */

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('entries', function (Blueprint $table) {
-            $table->boolean('unlocked');
+            $table->foreignUlid('unlock_id')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('entries', function (Blueprint $table) {
-            $table->dropColumn('unlocked');
+            $table->dropColumn('unlock_id');
         });
     }
 };

@@ -46,6 +46,15 @@ class Unlock extends Model
     }
 
     /**
+     * Has many relationship for : Entries
+     * 
+     */
+    public function entries()
+    {
+        return $this->hasMany(Entry::class);
+    }
+
+    /**
      * Creates a user authorization for each user associated with the unlock's vault
      * 
      * @param ULID
@@ -82,9 +91,10 @@ class Unlock extends Model
     {
         if (!$this->haveAuthsBeenGenerated()) return false;
 
-        for ($i = 0; $i < $this->unlockAuthorizations->count(); $i++)
+        $uAuths = $this->unlockAuthorizations;
+        for ($i = 0; $i < $uAuths->count(); $i++)
         {
-            if ($this->unlockAuthorizations[$i]->authorized_at == NULL) {
+            if ($uAuths[$i]->authorized_at == NULL) {
                 return false;
             }
         }
@@ -93,54 +103,22 @@ class Unlock extends Model
     }
 
     /**
-     * Checks if a specific user has authorized the unlock
+     * Checks if the unlock is fully authorized, then runs needed commands if so
+     * This should be called each time someone verifies a UAuth
      * 
-     * @param App\Models\User
-     * @return Boolean
      */
-    public function hasAuthorized(User $user)
+    public function checkForFullAuthorization()
     {
-        //
+        if (!$this->isAuthorized()) return;
+
+        // Associate all entries that haven't been unlocked yet to this unlock.
+        $entries = $this->vault->entries()->where('unlock_id', NULL)->get();
+        for ($i = 0; $i < $entries->count(); $i++)
+        {
+            $entries[$i]->unlock()->associate($this);
+            $entries[$i]->save();
+        }
+
     }
 
-    /**
-     * Returns collection of entries from database
-     * 
-     * @return Collection[App\Models\Entry]
-     */
-    public function getEntries()
-    {
-        //
-    }
-
-    /**
-     * Returns a single entry given an index
-     * 
-     * @param Integer
-     * @return App\Models\Entry
-     */
-    public function getEntry()
-    {
-        //
-    }
-
-    /**
-     * Gets the total number of entries in the unlock
-     * 
-     * @return Integer
-     */
-    public function totalEntries()
-    {
-        //
-    }
-
-    /**
-     * Returns the next unread entry
-     *  
-     * @return App\Models\Entry
-     */
-    public function nextEntry()
-    {
-        //
-    }
 }
