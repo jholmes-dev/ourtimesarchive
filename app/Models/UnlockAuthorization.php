@@ -46,6 +46,7 @@ class UnlockAuthorization extends Model
         if (!Hash::check($password, $this->user->password)) return false;
         $this->authorized_at = now()->toDateTimeString();
         $this->save();
+        $this->unlock->checkForFullAuthorization();
         return true;        
     }
 }
