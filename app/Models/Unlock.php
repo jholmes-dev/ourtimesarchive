@@ -121,4 +121,21 @@ class Unlock extends Model
 
     }
 
+    /**
+     * Creates an array of entries with data that is front-end friendly
+     * 
+     * @return Array
+     */
+    function getReturnableEntries()
+    {
+        return $this->entries->map(function($entry, $key) {
+            $entry->location = unserialize($entry->location);
+            $entry['author'] = $entry->user->name;
+            $entry['images'] = $entry->assets->map(function($asset, $key) {
+                return $asset->getUrl();
+            })->toArray();
+            return $entry;
+        })->toArray();
+    }
+
 }
