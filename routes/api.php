@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\UnlockAuthorizationController;
+use App\Http\Controllers\api\UnlockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,15 @@ Route::middleware('auth:sanctum')->controller(UnlockAuthorizationController::cla
     Route::post('/uauth/verify', 'verifyAuthorization')->name('verify');
 
 });
+
+/**
+ * Unlock related routes
+ * 
+ */
+Route::middleware('auth:sanctum')->controller(UnlockController::class)->name('api.unlock.')->group(function() {
+
+    // Get an unlock's entries
+    Route::get('/unlock/{unlock_id}/entries', 'getUnlockEntries')->name('entries.get');
+
+});
+

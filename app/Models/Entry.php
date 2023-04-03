@@ -18,12 +18,15 @@ class Entry extends Model
     protected $guarded = [];
 
     /**
-     * The default values for attributes
+     * Fields that are hidden from serialization
      * 
      * @var Array
      */
-    protected $attributes = [
-        'unlocked' => false
+    protected $hidden = [
+        'user',
+        'assets',
+        'updated_at',
+        'user_id',
     ];
 
     /**

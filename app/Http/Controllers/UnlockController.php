@@ -71,7 +71,9 @@ class UnlockController extends Controller
      */
     private function viewUnlock(Request $request, $vault, $unlock)
     {
-        return view('unlock.view');
+        return view('unlock.view', [
+            'unlock' => $unlock
+        ]);
     }
     
 }

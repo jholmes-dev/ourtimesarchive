@@ -3,7 +3,14 @@
 @section('content')
 <div class="container">
 
-    Entries are assigned to this unlock after full authorization. Now you just need to write an API route to retrieve all entries related to this unlock, and display them here in a fancy fashion. Afterwards you'll need to write some for clean up and removing unlocks, as well as loading them in the unlocked category for a vault for future viewing
+    Todo: Write routes to make entry assets accessible but protected. Display info here using a JS class for control. Create it in a different file and use a module export/import.
+
+    <input type="hidden" id="getEntriesUrl" value="{{ route('api.unlock.entries.get', $unlock->id) }}">
+    <input type="hidden" id="unlockId" value="{{ $unlock->id }}">
 
 </div>
+@endsection
+
+@section('js')
+<script type="module" src="{{ Vite::asset('resources/js/unlock/unlock-page.js') }}"></script>
 @endsection
