@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Asset extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
 
     /**
      * The fields that are hidden from mass assignment
@@ -42,7 +42,7 @@ class Asset extends Model
      */
     public function getUrl()
     {
-        return Storage::url($this->path);
+        return route('asset.view', $this->id);
     }
 
 }

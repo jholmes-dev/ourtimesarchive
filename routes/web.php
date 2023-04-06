@@ -7,6 +7,7 @@ use App\Http\Controllers\InviteController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UnlockController;
+use App\Http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,17 @@ Route::controller(UnlockController::class)->name('unlock.')->group(function() {
 
     // Local unlock. Routes the request to the proper method
     Route::get('/vault/{vid}/unlock/{uid}/', 'routeUnlock')->name('route');
+
+});
+
+/**
+ * Asset related routes
+ * 
+ */
+Route::controller(AssetController::class)->name('asset.')->group(function() {
+
+    // Local unlock. Routes the request to the proper method
+    Route::get('/asset/{id}', 'view')->name('view');
 
 });
 
