@@ -122,7 +122,7 @@ class Unlock extends Model
     }
 
     /**
-     * Creates an array of entries with data that is front-end friendly
+     * Creates an array of entries containing data that is front-end friendly
      * 
      * @return Array
      */

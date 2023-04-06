@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Asset;
+use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
 {
@@ -17,28 +19,18 @@ class AssetController extends Controller
         $this->middleware('auth');
     }
 
-    /**
+    /** 
+     * Retrieve an asset
      * 
      */
-    public function create()
+    public function view(Request $request, $id)
     {
+        $asset = Asset::findOrFail($id);
 
-    }
+        if ($request->user()->cannot('view', $asset))   abort(403);
+        if (!Storage::exists($asset->path))             abort(404);
 
-    /**
-     * 
-     */
-    public function store()
-    {
-
-    }
-
-    /**
-     * 
-     */
-    public function delete()
-    {
-        
+        return response()->file(Storage::path($asset->path));
     }
 
 }

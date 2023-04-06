@@ -22,3 +22,16 @@
         margin-bottom: 5rem;
     }
 }
+
+/*****************
+** UNLOCK VIEWING PAGE
+*****************/
+
+#unlock-view {
+
+    .entry-wrapper {
+        min-height: calc(100vh - 3rem);
+        display: flex;
+        align-items: center;
+    }
+}
