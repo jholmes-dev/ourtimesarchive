@@ -33,5 +33,10 @@
         min-height: calc(100vh - 3rem);
         display: flex;
         align-items: center;
+        justify-content: center;
+
+        .entry-inner {
+            flex: 1;
+        }
     }
 }
