@@ -34,10 +34,11 @@
 
             <div id="entry-assets" class="col-12 col-lg-6">
                 <div class="entry-assets-inner">
-                    <button id="prevSlide" class="slide-control btn btn-text text-primary"><i class="bi bi-arrow-left-circle-fill"></i></button>
-                    <button id="nextSlide" class="slide-control btn btn-text text-primary"><i class="bi bi-arrow-right-circle-fill"></i></button>
+                    <button id="prevSlide" class="slide-control btn btn-text"><i class="bi bi-arrow-left-short"></i></button>
+                    <button id="nextSlide" class="slide-control btn btn-text"><i class="bi bi-arrow-right-short"></i></button>
 
                     <div id="entry-assets-wrapper"></div>
+                    <div id="entry-thumbnail-wrapper"></div>
                 </div>
             </div>
 

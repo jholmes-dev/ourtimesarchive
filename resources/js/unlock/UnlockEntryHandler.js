@@ -297,16 +297,28 @@ class UnlockEntryHandler
         if (this.currentEntry().images.length == 0) {
             $('#entry-inner-wrapper').addClass('entry-no-images');
             return;
-        } else {
-            $('#entry-inner-wrapper').removeClass('entry-no-images');
+        } else if (this.currentEntry().images.length == 1) {
+            $('#entry-inner-wrapper').addClass('entry-single-image');
         }
 
         // Create the slides and add them to the DOM
         for (let i = 0; i < this.currentEntry().images.length; i++)
         {
+            // Generate main slides
             $('<div>').addClass('entry-assets-image').css({
                 'background-image': 'url("' + this.currentEntry().images[i] + '")'
             }).appendTo($('#entry-assets-wrapper'));
+
+            // Generate navigation thumbnails
+            let slideThumbnail = $('<div>').addClass('entry-assets-thumbnail').css({
+                'background-image': 'url("' + this.currentEntry().images[i] + '")'
+            }).attr('slideindex', i);
+            
+            if (i == 0) {
+                slideThumbnail.addClass('active');
+            }
+
+            slideThumbnail.appendTo($('#entry-thumbnail-wrapper'));
         }
         /*
         Style slides
@@ -324,8 +336,11 @@ class UnlockEntryHandler
      */
     destroySlideshow()
     {
-        // Reset slide index
-        // Clear transform style
+        this.setSlideIndex(0);
+        this.loadSlide();
+        this.clearSlideClasses();
+        $('#entry-assets-wrapper').html("");
+        $('#entry-thumbnail-wrapper').html("");
     }
 
 
@@ -391,6 +406,19 @@ class UnlockEntryHandler
         $('#entry-assets-wrapper').css({
             'transform': 'translateX(-' + (this.slideIndex * 100) + '%)',
         });
+
+        $('.entry-assets-thumbnail.active').removeClass('active');
+        $($('.entry-assets-thumbnail')[this.slideIndex]).addClass('active');
+    }
+
+    /**
+     * Clears any state classes applied to the slideshow
+     * 
+     */
+    clearSlideClasses()
+    {
+        $('#entry-inner-wrapper').removeClass('entry-no-images');
+        $('#entry-inner-wrapper').removeClass('entry-single-image');
     }
 
 

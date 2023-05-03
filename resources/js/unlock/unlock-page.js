@@ -25,3 +25,8 @@ $('#nextSlide').on('click', function() {
 $('#prevSlide').on('click', function() {
     entryHandler.loadPreviousSlide();
 });
+
+$('#entry-thumbnail-wrapper').on('click', '.entry-assets-thumbnail', function() {
+    entryHandler.setSlideIndex( Number($(this).attr('slideindex')) );
+    entryHandler.loadSlide();
+});
