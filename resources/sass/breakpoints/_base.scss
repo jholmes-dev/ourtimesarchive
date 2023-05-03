@@ -549,6 +549,9 @@ iframe, img {
             height: 400px;
         }
         
+        #entry-assets, #entry-map {
+            flex-grow: 1;
+        }
 
         #entry-assets {
 
@@ -566,12 +569,18 @@ iframe, img {
                     padding: 0px;
                     line-height: 0;
                     position: absolute;
-                    top: 50%;
-                    margin-top: -23px;
+                    top: 180px;
                     font-size: 40px;
                     z-index: 9;
                     opacity: 0;
                     transition: opacity ease .6s;
+                    color: white;
+                    background: $primary;
+                    height: 40px;
+                    width: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;;
                 }
                 #prevSlide {
                     left: 16px;
@@ -592,6 +601,37 @@ iframe, img {
                         background-position: center;
                     }
                 }
+                #entry-thumbnail-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 1.66%;
+
+                    .entry-assets-thumbnail {
+                        flex: 0 0 15%;
+                        height: 100px;
+                        background-size: cover;
+                        background-position: center;
+                        opacity: .5;
+                        cursor: pointer;
+                        transition: opacity ease .5s;
+                    }
+                    .entry-assets-thumbnail.active {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .entry-no-images {
+
+            #entry-assets {
+                display: none;
+            }
+        }
+        .entry-single-image {
+
+            .slide-control, #entry-thumbnail-wrapper {
+                display: none!important;
             }
         }
     }
