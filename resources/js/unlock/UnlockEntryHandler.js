@@ -50,9 +50,25 @@ class UnlockEntryHandler
      * Retrieve entries API URL from input field
      * 
      */
-    constructor()
+    constructor(mapLoader)
     {
         this.getEntriesUrl = $('#getEntriesUrl').val();
+        this.loadMapsLibraries(mapLoader);
+    }
+
+
+    /**
+     * Handles initializing Google Maps JavaScript API
+     * 
+     */
+    async loadMapsLibraries(mapLoader)
+    {
+        mapLoader.load().then(async () => {
+            const { Map } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+            this.Map = Map;
+            this.AdvancedMarkerElement = AdvancedMarkerElement;
+        });
     }
 
 
@@ -206,17 +222,17 @@ class UnlockEntryHandler
      * 
      */
     async loadEntry()
-    {
-        console.log(this.currentEntry());
+    {   
         this.clearEntry();
 
         $('#entry-date').html(this.getFormattedDate());
+        $('#entry-loc').html(this.currentEntry().location.raw_input);
         $('#entry-title').html(this.currentEntry().title);
         $('#entry-author').html(this.currentEntry().author);
         $('#entry-content').html(this.currentEntry().content);
 
         this.loadSlideshow();
-        await this.loadMap();
+        this.loadMap();
 
         this.fadeEntryIn();
     }
@@ -229,6 +245,7 @@ class UnlockEntryHandler
     clearEntry()
     {
         $('#entry-date').html("");
+        $('#entry-loc').html("");
         $('#entry-title').html("");
         $('#entry-author').html("");
         $('#entry-content').html("");
@@ -241,12 +258,22 @@ class UnlockEntryHandler
      * Handles loading the Google Map related to the location
      * 
      */
-    loadMap()
+    async loadMap()
     {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve();
-            }, 1);
+        // No map to load
+        if (this.currentEntry().location.loc_details == null) {
+            $('#entry-inner-wrapper').addClass('entry-no-map');
+            return;
+        }
+
+        let map = new this.Map(document.getElementById("entry-map"), {
+            center: this.currentEntry().location.loc_details.geometry.location,
+            zoom: 15,
+        });
+
+        new google.maps.Marker({
+            position: this.currentEntry().location.loc_details.geometry.location,
+            map,
         });
     }
 
@@ -320,13 +347,6 @@ class UnlockEntryHandler
 
             slideThumbnail.appendTo($('#entry-thumbnail-wrapper'));
         }
-        /*
-        Style slides
-        Slide thumbnails
-        No slide controls if single image
-        Make it all work better
-        Lightbox
-         */
     }
 
 
@@ -338,7 +358,7 @@ class UnlockEntryHandler
     {
         this.setSlideIndex(0);
         this.loadSlide();
-        this.clearSlideClasses();
+        this.clearEntryClasses();
         $('#entry-assets-wrapper').html("");
         $('#entry-thumbnail-wrapper').html("");
     }
@@ -415,10 +435,11 @@ class UnlockEntryHandler
      * Clears any state classes applied to the slideshow
      * 
      */
-    clearSlideClasses()
+    clearEntryClasses()
     {
         $('#entry-inner-wrapper').removeClass('entry-no-images');
         $('#entry-inner-wrapper').removeClass('entry-single-image');
+        $('#entry-inner-wrapper').removeClass('entry-no-map');
     }
 
 

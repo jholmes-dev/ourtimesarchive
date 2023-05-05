@@ -3,8 +3,14 @@
  * 
  */
 import { UnlockEntryHandler } from './UnlockEntryHandler';
+import { Loader } from "@googlemaps/js-api-loader";
 
-let entryHandler = new UnlockEntryHandler();
+const MapsLoader = new Loader({
+  apiKey: "AIzaSyCiOjAGV6rEayPD81Ojv2-vFt8veYsHRWA",
+  version: "weekly",
+});
+
+let entryHandler = new UnlockEntryHandler(MapsLoader);
 init();
 
 async function init() {
