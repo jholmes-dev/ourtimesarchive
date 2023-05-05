@@ -22,9 +22,19 @@
             <div class="entry-content-wrapper col-12">
 
                 <div class="entry-content-header">
-                    <h6 id="entry-date"></h6>
+
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <h6 id="entry-date"></h6>
+                        </div>
+                        <div class="col">
+                            <h5 id="entry-loc"></h5>
+                        </div>
+                    </div>
+
                     <h2 id="entry-title"></h2>
                     <h5 id="entry-author" class="text-muted"></h5>
+
                 </div>
 
                 <div id="entry-content"></div>  
@@ -42,9 +52,7 @@
                 </div>
             </div>
 
-            <div id="entry-map" class="col-12 col-lg-6">
-                <div id="entry-assets-placeholder"></div>
-            </div>
+            <div id="entry-map" class="col-12 col-lg-6"></div>
 
 
         </div>
